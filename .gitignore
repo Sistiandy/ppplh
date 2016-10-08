@@ -1,5 +1,7 @@
 .DS_Store
 
+development/
+
 application/cache/*
 !application/cache/index.html
 !application/cache/.htaccess
@@ -20,7 +22,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 .idea/*
 *.bak
 
-/development
 
 ## Sublime Text cache files
 *.tmlanguage.cache
