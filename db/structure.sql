@@ -82,18 +82,18 @@ COLLATE = utf8_general_ci;
 
 
 -- -----------------------------------------------------
--- Table `institutions`
+-- Table `instances`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `institutions` (
-  `institution_id` INT NOT NULL AUTO_INCREMENT ,
-  `institution_name` VARCHAR(255) NULL ,
-  `institution_email` VARCHAR(45) NULL ,
-  `institution_address` TEXT NULL ,
-  `institution_phone` VARCHAR(45) NULL ,
-  `institution_input_date` TIMESTAMP NULL ,
-  `institution_last_update` TIMESTAMP NULL ,
+CREATE  TABLE IF NOT EXISTS `instances` (
+  `instance_id` INT NOT NULL AUTO_INCREMENT ,
+  `instance_name` VARCHAR(255) NULL ,
+  `instance_email` VARCHAR(45) NULL ,
+  `instance_address` TEXT NULL ,
+  `instance_phone` VARCHAR(45) NULL ,
+  `instance_input_date` TIMESTAMP NULL ,
+  `instance_last_update` TIMESTAMP NULL ,
   `users_user_id` INT(11) NULL ,
-  PRIMARY KEY (`institution_id`) ,
+  PRIMARY KEY (`instance_id`) ,
   INDEX `fk_institusi_users1_idx` (`users_user_id` ASC) ,
   CONSTRAINT `fk_institusi_users1`
     FOREIGN KEY (`users_user_id` )
@@ -133,12 +133,29 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `activities`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `activities` (
+  `activity_id` INT NOT NULL AUTO_INCREMENT ,
+  `activity_title` VARCHAR(255) NULL ,
+  `activity_input_date` TIMESTAMP NULL ,
+  `activity_last_update` TIMESTAMP NULL ,
+  `users_user_id` INT(11) NULL ,
+  PRIMARY KEY (`activity_id`) ,
+  INDEX `fk_activities_users1_idx` (`users_user_id` ASC) ,
+  CONSTRAINT `fk_activities_users1`
+    FOREIGN KEY (`users_user_id` )
+    REFERENCES `users` (`user_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `cases`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `cases` (
   `case_id` INT NOT NULL AUTO_INCREMENT ,
-  `case_activity` VARCHAR(255) NULL ,
-  `institutions_institution_id` INT NULL ,
   `case_address` TEXT NULL ,
   `case_region` ENUM('Jakarta Pusat', 'Jakarta Selatan', 'Jakarta Timur', 'Jakarta Barat', 'Jakarta Utara') NULL ,
   `channels_channel_id` INT NULL ,
@@ -147,15 +164,13 @@ CREATE  TABLE IF NOT EXISTS `cases` (
   `case_input_date` TIMESTAMP NULL ,
   `case_last_update` TIMESTAMP NULL ,
   `users_user_id` INT(11) NULL ,
+  `activities_activity_id` INT NULL ,
+  `instances_instance_id` INT NULL ,
   PRIMARY KEY (`case_id`) ,
-  INDEX `fk_cases_institutions1_idx` (`institutions_institution_id` ASC) ,
   INDEX `fk_cases_channels1_idx` (`channels_channel_id` ASC) ,
   INDEX `fk_cases_users1_idx` (`users_user_id` ASC) ,
-  CONSTRAINT `fk_cases_institutions1`
-    FOREIGN KEY (`institutions_institution_id` )
-    REFERENCES `institutions` (`institution_id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_cases_activities1_idx` (`activities_activity_id` ASC) ,
+  INDEX `fk_cases_instances1_idx` (`instances_instance_id` ASC) ,
   CONSTRAINT `fk_cases_channels1`
     FOREIGN KEY (`channels_channel_id` )
     REFERENCES `channels` (`channel_id` )
@@ -164,6 +179,16 @@ CREATE  TABLE IF NOT EXISTS `cases` (
   CONSTRAINT `fk_cases_users1`
     FOREIGN KEY (`users_user_id` )
     REFERENCES `users` (`user_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cases_activities1`
+    FOREIGN KEY (`activities_activity_id` )
+    REFERENCES `activities` (`activity_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cases_instances1`
+    FOREIGN KEY (`instances_instance_id` )
+    REFERENCES `instances` (`instance_id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -60,7 +60,7 @@ class Violations_admin extends CI_Controller {
                     )
             );
 
-            $this->session->set_flashdata('success', $data['operation'] . ' Petugas Berhasil');
+            $this->session->set_flashdata('success', $data['operation'] . ' Pelanggaran Berhasil');
             redirect('admin/violations');
         } else {
             if ($this->input->post('violation_id')) {

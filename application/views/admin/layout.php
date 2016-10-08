@@ -27,6 +27,8 @@
         <link rel="stylesheet" href="<?php echo media_url() ?>/css/bootstrap3-wysihtml5.min.css">
         <!-- Notyfy JS - Notification -->
         <link rel="stylesheet" href="<?php echo media_url() ?>/css/jquery.notyfy.css">
+        <!-- Select2 multi select -->
+        <link rel="stylesheet" href="<?php echo media_url() ?>/css/select2.min.css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -120,9 +122,19 @@
         <script src="<?php echo media_url() ?>/js/app.min.js"></script>
         <!-- Notyfy JS -->
         <script src="<?php echo media_url() ?>/js/jquery.notyfy.js"></script>
+        <!-- Select2 multi select -->
+        <script src="<?php echo media_url() ?>/js/select2.min.js"></script>
         <!-- DataTables -->
         <script src="<?php echo media_url() ?>/js/jquery.dataTables.min.js"></script>
         <script src="<?php echo media_url() ?>/js/dataTables.bootstrap.min.js"></script>
+
+
+        <script type="text/javascript">
+                    $(document).ready(function () {
+                        $(".autocomplete").select2();
+                    });
+        </script>
+
 
         <script>
             //Initiation dataTable

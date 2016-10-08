@@ -36,11 +36,18 @@ class Cases_model extends CI_Model {
         } else {
             $this->db->order_by('case_last_update', 'desc');
         }
-        $this->db->select('cases.case_id, case_title,
+        $this->db->select('cases.case_id, case_address, case_region,
+            case_date, sanksi_type,
             case_input_date, case_last_update');
-        $this->db->select('users_user_id, users.user_full_name');
+        $this->db->select('cases.users_user_id, users.user_full_name');
+        $this->db->select('instances_instance_id, instances.instance_name');
+        $this->db->select('channels_channel_id, channels.channel_name');
+        $this->db->select('activities_activity_id, activities.activity_title');
 
         $this->db->join('users', 'users.user_id = cases.users_user_id', 'left');
+        $this->db->join('instances', 'instances.instance_id = cases.instances_instance_id', 'left');
+        $this->db->join('channels', 'channels.channel_id = cases.channels_channel_id', 'left');
+        $this->db->join('activities', 'activities.activity_id = cases.activities_activity_id', 'left');
         $res = $this->db->get('cases');
 
         if (isset($params['id'])) {
@@ -57,8 +64,32 @@ class Cases_model extends CI_Model {
             $this->db->set('case_id', $data['case_id']);
         }
 
-        if (isset($data['case_title'])) {
-            $this->db->set('case_title', $data['case_title']);
+        if (isset($data['instances_instance_id'])) {
+            $this->db->set('instances_instance_id', $data['instances_instance_id']);
+        }
+
+        if (isset($data['case_address'])) {
+            $this->db->set('case_address', $data['case_address']);
+        }
+
+        if (isset($data['case_region'])) {
+            $this->db->set('case_region', $data['case_region']);
+        }
+
+        if (isset($data['channels_channel_id'])) {
+            $this->db->set('channels_channel_id', $data['channels_channel_id']);
+        }
+
+        if (isset($data['activities_activity_id'])) {
+            $this->db->set('activities_activity_id', $data['activities_activity_id']);
+        }
+
+        if (isset($data['case_date'])) {
+            $this->db->set('case_date', $data['case_date']);
+        }
+
+        if (isset($data['sanksi_type'])) {
+            $this->db->set('sanksi_type', $data['sanksi_type']);
         }
         
         if (isset($data['case_input_date'])) {
