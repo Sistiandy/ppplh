@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>LOGIN</title>
+        <title>SI-PPPLH | Login</title>
         <link rel="icon" href="<?php echo media_url('ico/favicon.jpg'); ?>" type="image/x-icon">
         <link rel="stylesheet" href="<?php echo media_url() ?>css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo media_url() ?>css/login.css">
@@ -38,7 +38,7 @@
                                 Sign in</button>
                         </form>
                     </div>
-                    <a href="#" class="text-center new-account">Create an account </a>
+                    <p class="text-center new-account text-blue">Please contact administrator to create an account </p>
                 </div>
             </div>
         </div>
