@@ -21,6 +21,15 @@ class Dashboard_admin extends CI_Controller {
     }
     
     public function index() {
+        $this->load->model('cases/Cases_model');
+        $this->load->model('users/Users_model');
+        $this->load->model('instances/Instances_model');
+        $this->load->model('activities/Activities_model');
+        
+        $data['users'] = count($this->Users_model->get());
+        $data['cases'] = count($this->Cases_model->get());
+        $data['instances'] = count($this->Instances_model->get());
+        $data['activities'] = count($this->Activities_model->get());
         $data['title'] = 'Dashboard';
         $data['main'] = 'dashboard/dashboard';
         $this->load->view('admin/layout', $data);
