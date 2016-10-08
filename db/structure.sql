@@ -81,6 +81,48 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
 
 
+-- -----------------------------------------------------
+-- Table `institutions`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `institutions` (
+  `institution_id` INT NOT NULL AUTO_INCREMENT ,
+  `institution_name` VARCHAR(255) NULL ,
+  `institution_email` VARCHAR(45) NULL ,
+  `institution_address` TEXT NULL ,
+  `institution_phone` VARCHAR(45) NULL ,
+  `institution_input_date` TIMESTAMP NULL ,
+  `institution_last_update` TIMESTAMP NULL ,
+  `users_user_id` INT(11) NULL ,
+  PRIMARY KEY (`institution_id`) ,
+  INDEX `fk_institusi_users1_idx` (`users_user_id` ASC) ,
+  CONSTRAINT `fk_institusi_users1`
+    FOREIGN KEY (`users_user_id` )
+    REFERENCES `users` (`user_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `channels`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `channels` (
+  `channel_id` INT NOT NULL AUTO_INCREMENT ,
+  `channel_name` VARCHAR(255) NULL ,
+  PRIMARY KEY (`channel_id`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `violations`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `violations` (
+  `violation_id` INT NOT NULL AUTO_INCREMENT ,
+  `violation_title` VARCHAR(255) NULL ,
+  PRIMARY KEY (`violation_id`) )
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
