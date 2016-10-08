@@ -113,28 +113,29 @@ if (isset($user)) {
         <!-- /.row -->
     </section>
     <!-- /.content -->
-
-    <div class="modal modal-danger fade" id="delModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title"><span class="fa fa-warning"></span> Konfirmasi penghapusan</h3>
+    <?php if (isset($user)) { ?>
+        <div class="modal modal-danger fade" id="delModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title"><span class="fa fa-warning"></span> Konfirmasi penghapusan</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah anda yakin akan menghapus data ini?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <?php echo form_open('admin/users/delete/' . $user['user_id']); ?>
+                        <input type="hidden" name="delName" value="<?php echo $user['user_full_name']; ?>">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                        <button type="submit" class="btn btn-outline"><span class="fa fa-check"></span> Hapus</button>
+                        <?php echo form_close(); ?>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <p>Apakah anda yakin akan menghapus data ini?</p>
-                </div>
-                <div class="modal-footer">
-                    <?php echo form_open('admin/users/delete/' . $user['user_id']); ?>
-                    <input type="hidden" name="delName" value="<?php echo $user['user_full_name']; ?>">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
-                    <button type="submit" class="btn btn-outline"><span class="fa fa-check"></span> Hapus</button>
-                    <?php echo form_close(); ?>
-                </div>
+                <!-- /.modal-content -->
             </div>
-            <!-- /.modal-content -->
+            <!-- /.modal-dialog -->
         </div>
-        <!-- /.modal-dialog -->
-    </div>
+    <?php } ?>
 </div>

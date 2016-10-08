@@ -3,14 +3,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
     /**
-     * Users controllers Class
+     * Profile controllers Class
      *
      * @package     SYSCMS
      * @subpackage  Controllers
      * @category    Controllers
      * @author      Sistiandy Syahbana nugraha <sistiandy.web.id>
      */
-class Users_admin extends CI_Controller {
+class Profile_admin extends CI_Controller {
     
   public function __construct()
     {
@@ -22,9 +22,9 @@ class Users_admin extends CI_Controller {
     }
     
     public function index() {
-        $data['users'] = $this->Users_model->get();
-        $data['title'] = 'Pengguna';
-        $data['main'] = 'users/list';
+        $data['user'] = $this->Users_model->get(array('id' => $this->session->userdata('uid')));
+        $data['title'] = 'Profil';
+        $data['main'] = 'profile/view';
         $this->load->view('admin/layout', $data);
     }
     
@@ -98,35 +98,5 @@ class Users_admin extends CI_Controller {
         }
     }
     
-    // View data detail
-    public function view($id = NULL) {
-        $data['user'] = $this->Users_model->get(array('id' => $id));
-        $data['title'] = 'Pengguna';
-        $data['main'] = 'users/view';
-        $this->load->view('admin/layout', $data);
-    }
-
-    // Delete to database
-    public function delete($id = NULL) {
-        if ($_POST) {
-            $this->Users_model->delete($id);
-            // activity log
-            $this->load->model('logs/Logs_model');
-            $this->Logs_model->add(
-                    array(
-                        'log_date' => date('Y-m-d H:i:s'),
-                        'user_id' => $id,
-                        'log_module' => 'Users',
-                        'log_action' => 'Hapus',
-                        'log_info' => 'ID:' . $id . ';Title:' . $this->input->post('delName')
-                    )
-            );
-            $this->session->set_flashdata('success', 'Hapus Pengguna berhasil');
-            redirect('admin/users');
-        } elseif (!$_POST) {
-            $this->session->set_flashdata('delete', 'Delete');
-            redirect('admin/users/edit/' . $id);
-        }
-    }
 
 }

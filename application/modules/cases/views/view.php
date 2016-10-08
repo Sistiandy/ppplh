@@ -2,12 +2,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Pengguna
+            Pelanggaran
             <small>Detail</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?php echo site_url('admin') ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Pengguna</li>
+            <li class="active">Pelanggaran</li>
         </ol>
     </section>
 
@@ -23,46 +23,34 @@
                             <h4>
                                 <small>
                                     <strong class="tgl-dftr"><span class="fa fa-calendar"></span></strong>
-                                    <em><?php echo pretty_date($user['user_input_date']) ?></em>
+                                    <em><?php echo pretty_date($violation['violation_input_date']) ?></em>
                                 </small>
                             </h4>
                             <table class="table table-condensed">
                                 <tbody>
                                     <tr>
-                                        <td>Username</td>
+                                        <td>Nama</td>
                                         <td>:</td>
-                                        <td><?php echo $user['user_name'] ?></td>
+                                        <td><?php echo $violation['violation_title'] ?></td>
                                     </tr>
                                     <tr>
-                                        <td>Nama lengkap</td>
+                                        <td>Penulis</td>
                                         <td>:</td>
-                                        <td><?php echo $user['user_full_name'] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tempat, tanggal lahir</td>
-                                        <td>:</td>
-                                        <td><?php echo $user['user_pob'].', '.  pretty_date($user['user_dob'], 'd F Y', FALSE) ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Email</td>
-                                        <td>:</td>
-                                        <td><?php echo $user['user_email'] ?></td>
+                                        <td><?php echo $violation['user_full_name'] ?></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="col-md-2">
-                            <a href="<?php echo site_url('admin/users') ?>" class="btn btn-app">
+                            <a href="<?php echo site_url('admin/violations') ?>" class="btn btn-app">
                                 <i class="fa fa-arrow-circle-o-left"></i> Batal
                             </a>
-                            <a href="<?php echo site_url('admin/users/edit/' . $user['user_id']) ?>" class="btn btn-app">
+                            <a href="<?php echo site_url('admin/violations/edit/' . $violation['violation_id']) ?>" class="btn btn-app">
                                 <i class="fa fa-edit"></i> Edit
                             </a>
-                            <?php if ($this->session->userdata('uid') != $user['user_id']) { ?>
-                                <a href="#delModal" data-toggle="modal" class="btn btn-app">
-                                    <i class="fa fa-trash"></i> Hapus
-                                </a>
-                            <?php } ?>
+                            <a href="#delModal" data-toggle="modal" class="btn btn-app">
+                                <i class="fa fa-trash"></i> Hapus
+                            </a>
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -86,8 +74,8 @@
                     <p>Apakah anda yakin akan menghapus data ini?</p>
                 </div>
                 <div class="modal-footer">
-                    <?php echo form_open('admin/users/delete/'.$user['user_id']); ?>
-                    <input type="hidden" name="delName" value="<?php echo $user['user_full_name']; ?>">
+                    <?php echo form_open('admin/violations/delete/' . $violation['violation_id']); ?>
+                    <input type="hidden" name="delName" value="<?php echo $violation['violation_title']; ?>">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
                     <button type="submit" class="btn btn-outline"><span class="fa fa-check"></span> Hapus</button>
                     <?php echo form_close(); ?>

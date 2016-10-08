@@ -26,10 +26,10 @@ INSERT INTO `channels` (`channel_id`, `channel_name`) VALUES
 (5, 'KLHK RI');
 
 --
--- Dumping data for table `channels`
+-- Dumping data for table `violations`
 --
 
-INSERT INTO `violations` (`violation_id`, `violation_name`) VALUES
+INSERT INTO `violations` (`violation_id`, `violation_title`) VALUES
 (1, 'Tidak memenuhi baku mutu lingkungan hidup'),
 (2, 'Membuang limbah ke media lingkungan tidak memiliki izin dari Menteri, Gubernur, Bupati/Walikota'),
 (3, 'Tidak memiliki amdal'),

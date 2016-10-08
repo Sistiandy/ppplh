@@ -119,7 +119,53 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `violations` (
   `violation_id` INT NOT NULL AUTO_INCREMENT ,
   `violation_title` VARCHAR(255) NULL ,
-  PRIMARY KEY (`violation_id`) )
+  `violation_input_date` TIMESTAMP NULL ,
+  `violation_last_update` TIMESTAMP NULL ,
+  `users_user_id` INT(11) NULL ,
+  PRIMARY KEY (`violation_id`) ,
+  INDEX `fk_violations_users1_idx` (`users_user_id` ASC) ,
+  CONSTRAINT `fk_violations_users1`
+    FOREIGN KEY (`users_user_id` )
+    REFERENCES `users` (`user_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cases`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `cases` (
+  `case_id` INT NOT NULL AUTO_INCREMENT ,
+  `case_activity` VARCHAR(255) NULL ,
+  `institutions_institution_id` INT NULL ,
+  `case_address` TEXT NULL ,
+  `case_region` ENUM('Jakarta Pusat', 'Jakarta Selatan', 'Jakarta Timur', 'Jakarta Barat', 'Jakarta Utara') NULL ,
+  `channels_channel_id` INT NULL ,
+  `case_date` DATE NULL ,
+  `sanksi_type` ENUM('Teguran Tertulis', 'Paksaan Pemerintah') NULL ,
+  `case_input_date` TIMESTAMP NULL ,
+  `case_last_update` TIMESTAMP NULL ,
+  `users_user_id` INT(11) NULL ,
+  PRIMARY KEY (`case_id`) ,
+  INDEX `fk_cases_institutions1_idx` (`institutions_institution_id` ASC) ,
+  INDEX `fk_cases_channels1_idx` (`channels_channel_id` ASC) ,
+  INDEX `fk_cases_users1_idx` (`users_user_id` ASC) ,
+  CONSTRAINT `fk_cases_institutions1`
+    FOREIGN KEY (`institutions_institution_id` )
+    REFERENCES `institutions` (`institution_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cases_channels1`
+    FOREIGN KEY (`channels_channel_id` )
+    REFERENCES `channels` (`channel_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cases_users1`
+    FOREIGN KEY (`users_user_id` )
+    REFERENCES `users` (`user_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 

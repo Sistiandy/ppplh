@@ -36,6 +36,38 @@
                     <li class="<?php echo ($this->uri->segment(2) == 'dashboard' OR $this->uri->segment(2) == NULL) ? 'active' : '' ?>"><a href="<?php echo site_url('admin') ?>"><i class="fa <?php echo ($this->uri->segment(2) == 'dashboard' OR $this->uri->segment(2) == NULL) ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Dashboard</a></li>
                 </ul>
             </li>
+            <li class="<?php echo ($this->uri->segment(2) == 'institutions') ? 'active' : '' ?> treeview">
+                <a href="#">
+                    <i class="fa fa-bank"></i> <span>Institusi</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?php echo ($this->uri->segment(2) == 'institutions' AND $this->uri->segment(3) != 'add') ? 'active' : '' ?> ">
+                        <a href="<?php echo site_url('admin/institutions') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'institutions' AND $this->uri->segment(3) != 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Institusi</a>
+                    </li>
+                    <li class="<?php echo ($this->uri->segment(2) == 'institutions' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
+                        <a href="<?php echo site_url('admin/institutions/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'institutions' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Institusi</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="<?php echo ($this->uri->segment(2) == 'violations') ? 'active' : '' ?> treeview">
+                <a href="#">
+                    <i class="fa fa-ban"></i> <span>Pelanggaran</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?php echo ($this->uri->segment(2) == 'violations' AND $this->uri->segment(3) != 'add') ? 'active' : '' ?> ">
+                        <a href="<?php echo site_url('admin/violations') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'violations' AND $this->uri->segment(3) != 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Pelanggaran</a>
+                    </li>
+                    <li class="<?php echo ($this->uri->segment(2) == 'violations' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
+                        <a href="<?php echo site_url('admin/violations/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'violations' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Pelanggaran</a>
+                    </li>
+                </ul>
+            </li>
             <li class="<?php echo ($this->uri->segment(2) == 'users') ? 'active' : '' ?> treeview">
                 <a href="#">
                     <i class="fa fa-users"></i> <span>Pengguna</span>
