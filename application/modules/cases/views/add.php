@@ -33,7 +33,7 @@ if (isset($case)) {
 
     <!-- Main content -->
     <section class="content">
-        <?php echo form_open(current_url()); ?>
+        <?php echo form_open_multipart(current_url()); ?>
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-md-9">
@@ -87,6 +87,16 @@ if (isset($case)) {
                         <div class="form-group">
                             <label>Tanggal Pelimpahan <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
                             <input type="text" placeholder="Tanggal" class="form-control datepicker" name="case_date" value="<?php echo $DateValue ?>">
+                        </div>
+                        <div class="form-group">
+                            <label>Pilih Pelanggaran <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
+                            <?php foreach ($violations as $row): ?>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="violation_id[]" value="<?php echo $row['violation_id'] ?>" type="checkbox"> <?php echo $row['violation_title'] ?>
+                                </label>
+                            </div>
+                            <?php endforeach; ?>
                         </div>
                         <p class="text-muted">*) Kolom wajib diisi.</p>
                     </div>
@@ -216,6 +226,7 @@ if (isset($case)) {
             var url = BASEURL + 'api/getInstances';
             $http.get(url).then(function (response) {
                 $scope.instances = response.data;
+            $scope.instanceModel = '<?php echo $InstanceValue ?>';
             })
         };
         $scope.addInstance = function (data) {
@@ -246,6 +257,7 @@ if (isset($case)) {
             var url = BASEURL + 'api/getActivities';
             $http.get(url).then(function (response) {
                 $scope.activities = response.data;
+            $scope.activityModel = '<?php echo $ActivityValue ?>';
             })
         };
         $scope.addActivity = function (data) {

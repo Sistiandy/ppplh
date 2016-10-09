@@ -166,6 +166,7 @@ CREATE  TABLE IF NOT EXISTS `cases` (
   `users_user_id` INT(11) NULL ,
   `activities_activity_id` INT NULL ,
   `instances_instance_id` INT NULL ,
+  `stage_id` INT NULL ,
   PRIMARY KEY (`case_id`) ,
   INDEX `fk_cases_channels1_idx` (`channels_channel_id` ASC) ,
   INDEX `fk_cases_users1_idx` (`users_user_id` ASC) ,
@@ -189,6 +190,68 @@ CREATE  TABLE IF NOT EXISTS `cases` (
   CONSTRAINT `fk_cases_instances1`
     FOREIGN KEY (`instances_instance_id` )
     REFERENCES `instances` (`instance_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cases_has_violations`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `cases_has_violations` (
+  `cases_has_violations_id` INT NOT NULL AUTO_INCREMENT ,
+  `cases_case_id` INT NULL ,
+  `violations_violation_id` INT NULL ,
+  PRIMARY KEY (`cases_has_violations_id`) ,
+  INDEX `fk_cases_has_violations_violations1_idx` (`violations_violation_id` ASC) ,
+  INDEX `fk_cases_has_violations_cases1_idx` (`cases_case_id` ASC) ,
+  CONSTRAINT `fk_cases_has_violations_cases1`
+    FOREIGN KEY (`cases_case_id` )
+    REFERENCES `cases` (`case_id` )
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
+  CONSTRAINT `fk_cases_has_violations_violations1`
+    FOREIGN KEY (`violations_violation_id` )
+    REFERENCES `violations` (`violation_id` )
+    ON DELETE SET NULL
+    ON UPDATE SET NULL)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cases_disposisi`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `cases_disposisi` (
+  `cases_disposisi_id` INT NOT NULL AUTO_INCREMENT ,
+  `cases_case_id` INT NULL ,
+  `from_role_id` INT(11) NULL ,
+  `to_role_id` INT(11) NULL ,
+  `cases_disposisi_input_date` TIMESTAMP NULL ,
+  `cases_disposisi_last_update` TIMESTAMP NULL ,
+  `users_user_id` INT(11) NULL ,
+  PRIMARY KEY (`cases_disposisi_id`) ,
+  INDEX `fk_cases_disposisi_cases1_idx` (`cases_case_id` ASC) ,
+  INDEX `fk_cases_disposisi_user_roles1_idx` (`from_role_id` ASC) ,
+  INDEX `fk_cases_disposisi_user_roles2_idx` (`to_role_id` ASC) ,
+  INDEX `fk_cases_disposisi_users1_idx` (`users_user_id` ASC) ,
+  CONSTRAINT `fk_cases_disposisi_cases1`
+    FOREIGN KEY (`cases_case_id` )
+    REFERENCES `cases` (`case_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cases_disposisi_user_roles1`
+    FOREIGN KEY (`from_role_id` )
+    REFERENCES `user_roles` (`role_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cases_disposisi_user_roles2`
+    FOREIGN KEY (`to_role_id` )
+    REFERENCES `user_roles` (`role_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cases_disposisi_users1`
+    FOREIGN KEY (`users_user_id` )
+    REFERENCES `users` (`user_id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

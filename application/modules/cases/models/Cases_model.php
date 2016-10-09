@@ -37,7 +37,7 @@ class Cases_model extends CI_Model {
             $this->db->order_by('case_last_update', 'desc');
         }
         $this->db->select('cases.case_id, case_address, case_region,
-            case_date, sanksi_type,
+            case_date, sanksi_type, stage_id,
             case_input_date, case_last_update');
         $this->db->select('cases.users_user_id, users.user_full_name');
         $this->db->select('instances_instance_id, instances.instance_name');
@@ -91,6 +91,10 @@ class Cases_model extends CI_Model {
         if (isset($data['sanksi_type'])) {
             $this->db->set('sanksi_type', $data['sanksi_type']);
         }
+
+        if (isset($data['stage_id'])) {
+            $this->db->set('stage_id', $data['stage_id']);
+        }
         
         if (isset($data['case_input_date'])) {
             $this->db->set('case_input_date', $data['case_input_date']);
@@ -122,5 +126,184 @@ class Cases_model extends CI_Model {
         $this->db->where('case_id', $id);
         $this->db->delete('cases');
     }
+
+    // Get From Databases
+    function getHasViolations($params = array()) {
+        if (isset($params['id'])) {
+            $this->db->where('cases_has_violations_id', $params['id']);
+        }
+        if (isset($params['cases_id'])) {
+            $this->db->where('cases_case_id', $params['cases_id']);
+        }
+
+        if (isset($params['limit'])) {
+            if (!isset($params['offset'])) {
+                $params['offset'] = NULL;
+            }
+
+            $this->db->limit($params['limit'], $params['offset']);
+        }
+
+        if (isset($params['order_by'])) {
+            $this->db->order_by($params['order_by'], 'desc');
+        } else {
+            $this->db->order_by('cases_has_violations_id', 'desc');
+        }
+        $this->db->select('cases_has_violations_id, cases_case_id, violations_violation_id');
+        $this->db->select('violations.violation_title');
+
+        $this->db->join('violations', 'violations.violation_id = cases_has_violations.violations_violation_id', 'left');
+        $res = $this->db->get('cases_has_violations');
+
+        if (isset($params['id'])) {
+            return $res->row_array();
+        } else {
+            return $res->result_array();
+        }
+    }
+
+    // Insert some data to table
+    function addHasViolations($data = array()) {
+
+        if (isset($data['cases_has_violations_id'])) {
+            $this->db->set('cases_has_violations_id', $data['cases_has_violations_id']);
+        }
+
+        if (isset($data['cases_case_id'])) {
+            $this->db->set('cases_case_id', $data['cases_case_id']);
+        }
+
+        if (isset($data['violations_violation_id'])) {
+            $this->db->set('violations_violation_id', $data['violations_violation_id']);
+        }
+        
+        if (isset($data['cases_has_violations_id'])) {
+            $this->db->where('cases_has_violations_id', $data['cases_has_violations_id']);
+            $this->db->update('cases_has_violations');
+            $id = $data['cases_has_violations_id'];
+        } else {
+            $this->db->insert('cases_has_violations');
+            $id = $this->db->insert_id();
+        }
+
+        $status = $this->db->affected_rows();
+        return ($status == 0) ? FALSE : $id;
+    }
+
+    // Drop some data to table
+    function deleteHasViolations($id) {
+        $this->db->where('cases_has_violations_id', $id);
+        $this->db->delete('cases_has_violations');
+    }
+
+    // Get From Databases
+    function getCasesDisposisi($params = array()) {
+        if (isset($params['id'])) {
+            $this->db->where('cases_disposisi_id', $params['id']);
+        }
+        
+        if (isset($params['cases_id'])) {
+            $this->db->where('cases_case_id', $params['cases_id']);
+        }
+        
+        if (isset($params['from_role_id'])) {
+            $this->db->where('from_role_id', $params['from_role_id']);
+        }
+        
+        if (isset($params['to_role_id'])) {
+            $this->db->where('to_role_id', $params['to_role_id']);
+        }
+
+        if (isset($params['limit'])) {
+            if (!isset($params['offset'])) {
+                $params['offset'] = NULL;
+            }
+
+            $this->db->limit($params['limit'], $params['offset']);
+        }
+
+        if (isset($params['order_by'])) {
+            $this->db->order_by($params['order_by'], 'desc');
+        } else {
+            $this->db->order_by('cases_disposisi_last_update', 'desc');
+        }
+        $this->db->select('cases_disposisi_id, cases_case_id, from_role_id, to_role_id,
+                cases_disposisi_input_date, cases_disposisi_last_update');
+        $this->db->select('cases_disposisi.users_user_id, users.user_full_name');
+        $this->db->select('from_role.role_name AS from_role_name');
+        $this->db->select('to_role.role_name AS to_role_name');
+        
+        $this->db->select('cases.*');
+        $this->db->select('cases.instances_instance_id, instances.instance_name');
+        $this->db->select('cases.channels_channel_id, channels.channel_name');
+        $this->db->select('cases.activities_activity_id, activities.activity_title');
+
+        $this->db->join('cases', 'cases.case_id = cases_disposisi.cases_case_id', 'right');
+        $this->db->join('instances', 'instances.instance_id = cases.instances_instance_id', 'left');
+        $this->db->join('channels', 'channels.channel_id = cases.channels_channel_id', 'left');
+        $this->db->join('activities', 'activities.activity_id = cases.activities_activity_id', 'left');
+
+        $this->db->join('users', 'users.user_id = cases_disposisi.users_user_id', 'left');
+        $this->db->join('user_roles AS from_role', 'from_role.role_id = cases_disposisi.from_role_id', 'left');
+        $this->db->join('user_roles AS to_role', 'to_role.role_id = cases_disposisi.to_role_id', 'left');
+        $res = $this->db->get('cases_disposisi');
+
+        if (isset($params['id'])) {
+            return $res->row_array();
+        } else {
+            return $res->result_array();
+        }
+    }
+
+    // Insert some data to table
+    function addCasesDisposisi($data = array()) {
+
+        if (isset($data['cases_disposisi_id'])) {
+            $this->db->set('cases_disposisi_id', $data['cases_disposisi_id']);
+        }
+
+        if (isset($data['from_role_id'])) {
+            $this->db->set('from_role_id', $data['from_role_id']);
+        }
+
+        if (isset($data['cases_case_id'])) {
+            $this->db->set('cases_case_id', $data['cases_case_id']);
+        }
+
+        if (isset($data['to_role_id'])) {
+            $this->db->set('to_role_id', $data['to_role_id']);
+        }
+
+        if (isset($data['cases_disposisi_input_date'])) {
+            $this->db->set('cases_disposisi_input_date', $data['cases_disposisi_input_date']);
+        }
+
+        if (isset($data['cases_disposisi_last_update'])) {
+            $this->db->set('cases_disposisi_last_update', $data['cases_disposisi_last_update']);
+        }
+
+        if (isset($data['users_user_id'])) {
+            $this->db->set('users_user_id', $data['users_user_id']);
+        }
+        
+        if (isset($data['cases_disposisi_id'])) {
+            $this->db->where('cases_disposisi_id', $data['cases_disposisi_id']);
+            $this->db->update('cases_disposisi');
+            $id = $data['cases_disposisi_id'];
+        } else {
+            $this->db->insert('cases_disposisi');
+            $id = $this->db->insert_id();
+        }
+
+        $status = $this->db->affected_rows();
+        return ($status == 0) ? FALSE : $id;
+    }
+
+    // Drop some data to table
+    function deleteCasesDisposisi($id) {
+        $this->db->where('cases_disposisi_id', $id);
+        $this->db->delete('cases_disposisi');
+    }
+    
 
 }

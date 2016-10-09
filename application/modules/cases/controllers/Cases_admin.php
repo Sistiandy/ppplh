@@ -21,7 +21,11 @@ class Cases_admin extends CI_Controller {
     }
 
     public function index() {
+        if($this->session->userdata('uroleid') != ROLE_ANALIS){
         $data['cases'] = $this->Cases_model->get();
+        }else{
+           $data['cases'] = $this->Cases_model->getCasesDisposisi(array('to_role_id' => ROLE_ANALIS)); 
+        }
         $data['title'] = 'Kasus Pelanggaran';
         $data['main'] = 'cases/list';
         $this->load->view('admin/layout', $data);
@@ -46,6 +50,7 @@ class Cases_admin extends CI_Controller {
                 $params['case_id'] = $id;
             } else {
                 $params['case_input_date'] = date('Y-m-d H:i:s');
+                $params['stage_id'] = STAGE_STAFF;
             }
             $params['activities_activity_id'] = $this->input->post('activity_id');
             $params['instances_instance_id'] = $this->input->post('instance_id');
@@ -56,6 +61,14 @@ class Cases_admin extends CI_Controller {
             $params['users_user_id'] = $this->session->userdata('uid');
             $params['case_last_update'] = date('Y-m-d H:i:s');
             $status = $this->Cases_model->add($params);
+
+            $violationId = $_POST['violation_id'];
+            $cpt = count($_POST['violation_id']);
+            for ($i = 0; $i < $cpt; $i++) {
+                $param['violations_violation_id'] = $violationId[$i];
+                $param['cases_case_id'] = $status;
+                $this->Cases_model->addHasViolations($param);
+            }
 
             // activity log
             $this->load->model('logs/Logs_model');
@@ -89,14 +102,12 @@ class Cases_admin extends CI_Controller {
                     $data['case'] = $object;
                 }
             }
-            $this->load->model('instances/Instances_model');
             $this->load->model('channels/Channels_model');
-            $this->load->model('activities/Activities_model');
+            $this->load->model('violations/Violations_model');
 
             $data['ngapp'] = 'ng-app="app"';
-            $data['instances'] = $this->Instances_model->get();
             $data['channels'] = $this->Channels_model->get();
-            $data['activities'] = $this->Activities_model->get();
+            $data['violations'] = $this->Violations_model->get();
             $data['title'] = $data['operation'] . ' Kasus Pelanggaran';
             $data['main'] = 'cases/add';
             $this->load->view('admin/layout', $data);
@@ -106,15 +117,28 @@ class Cases_admin extends CI_Controller {
     // View data detail
     public function view($id = NULL) {
         $data['case'] = $this->Cases_model->get(array('id' => $id));
+        $data['casesViolations'] = $this->Cases_model->getHasViolations(array('cases_id' => $id));
         $data['title'] = 'Kasus Pelanggaran';
         $data['main'] = 'cases/view';
         $this->load->view('admin/layout', $data);
     }
 
-    // Delete to database
-    public function delete($id = NULL) {
+    // Disposisi cases
+    public function disposisi($id = NULL) {
         if ($_POST) {
-            $this->Cases_model->delete($id);
+            $this->Cases_model->addCasesDisposisi(
+                    array(
+                        'cases_disposisi_input_date' => date('Y-m-d H:i:s'),
+                        'cases_disposisi_last_update' => date('Y-m-d H:i:s'),
+                        'cases_case_id' => $id,
+                        'from_role_id' => $this->input->post('from_role_id'),
+                        'to_role_id' => $this->input->post('to_role_id'),
+                        'users_user_id' => $this->session->userdata('uid')
+                    )
+            );
+
+            $this->Cases_model->add(array('case_id' => $id, 'stage_id' => $this->input->post('stage_id')));
+
             // activity log
             $this->load->model('logs/Logs_model');
             $this->Logs_model->add(
@@ -126,11 +150,38 @@ class Cases_admin extends CI_Controller {
                         'log_info' => 'ID:' . $id . ';ID Instansi:' . $this->input->post('delName')
                     )
             );
-            $this->session->set_flashdata('success', 'Hapus Kasus Pelanggaran berhasil');
-            redirect('admin/cases');
+            $this->session->set_flashdata('success', 'Disposisi Kasus Pelanggaran berhasil');
+            redirect('admin/cases/view/' . $id);
         } elseif (!$_POST) {
-            $this->session->set_flashdata('delete', 'Delete');
-            redirect('admin/cases/edit/' . $id);
+            redirect('admin/cases/view/' . $id);
+        }
+    }
+
+    // Penalty cases
+    public function penalty($id = NULL) {
+        if ($_POST) {
+            $this->Cases_model->add(
+                    array(
+                        'case_id' => $id,
+                        'stage_id' => STAGE_ANALIS,
+                        'sanksi_type' => $this->input->post('sanksi_type')
+            ));
+
+            // activity log
+            $this->load->model('logs/Logs_model');
+            $this->Logs_model->add(
+                    array(
+                        'log_date' => date('Y-m-d H:i:s'),
+                        'user_id' => $id,
+                        'log_module' => 'Cases',
+                        'log_action' => 'Hapus',
+                        'log_info' => 'ID:' . $id . ';ID Instansi:' . $this->input->post('delName')
+                    )
+            );
+            $this->session->set_flashdata('success', 'Disposisi Kasus Pelanggaran berhasil');
+            redirect('admin/cases/view/' . $id);
+        } elseif (!$_POST) {
+            redirect('admin/cases/view/' . $id);
         }
     }
 
