@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>SI-PPPLH | Login</title>
-        <link rel="icon" href="<?php echo media_url('ico/favicon.jpg'); ?>" type="image/x-icon">
+        <link rel="icon" href="<?php echo media_url('ico/favicon.png'); ?>" type="image/x-icon">
         <link rel="stylesheet" href="<?php echo media_url() ?>css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo media_url() ?>css/login.css">
     </head>
@@ -13,7 +13,7 @@
                 <div class="col-sm-6 col-md-4 col-md-offset-4">
                     <h1 class="text-center login-title">Sign in to continue</h1>
                     <div class="account-wall">
-                        <img class="profile-img" src="<?php echo media_url() ?>img/photo.jpg"
+                        <img class="profile-img" src="<?php echo media_url() ?>img/user.png"
                              alt="">
                         <form class="form-signin" role="form" action="<?php echo site_url('admin/auth/login') ?>" method="post">
                             <?php

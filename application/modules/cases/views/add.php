@@ -169,7 +169,7 @@ if (isset($case)) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-info" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
-                        <button type="submit" class="btn btn-outline" ng-disabled="activityForm.$invalid" ng-click="addInstance(instance)"><span class="fa fa-check"></span> Simpan</button>
+                        <button type="submit" class="btn btn-outline" ng-disabled="instanceForm.$invalid" ng-click="addInstance(instance)"><span class="fa fa-check"></span> Simpan</button>
                     </div>
                 </ng-form>
             </div>

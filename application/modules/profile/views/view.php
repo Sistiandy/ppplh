@@ -20,11 +20,11 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                             <div class="col-md-2 col-sm-2 hidden-xs pull-left">
-                                <img src="<?php echo media_url() ?>img/photo.jpg" class="img-responsive">
+                                <img src="<?php echo media_url() ?>img/user.png" class="img-responsive">
                             </div>
                             <div class="col-xs-12 hidden-lg hidden-md hidden-sm">
                                 <center>
-                                    <img src="<?php echo media_url() ?>img/photo.jpg" class="img-responsive img-prfl">
+                                    <img src="<?php echo media_url() ?>img/user.png" class="img-responsive img-prfl">
                                 </center>
                             </div>
                             <div class="col-md-4 col-sm-12 col-xs-12 pull-left">

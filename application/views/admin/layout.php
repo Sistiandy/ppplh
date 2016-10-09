@@ -6,7 +6,7 @@
         <title>SI-PPPLH <?php echo isset($title) ? ' | ' . $title : null; ?></title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-        <link rel="icon" href="<?php echo media_url('ico/favicon.jpg'); ?>" type="image/x-icon">
+        <link rel="icon" href="<?php echo media_url('ico/favicon.png'); ?>" type="image/x-icon">
         <!-- Bootstrap 3.3.6 -->
         <link rel="stylesheet" href="<?php echo media_url() ?>/css/bootstrap.min.css">
         <!-- Jquery UI -->
@@ -65,13 +65,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="<?php echo media_url() ?>/img/photo.jpg" class="user-image" alt="User Image">
+                                    <img src="<?php echo media_url() ?>/img/user.png" class="user-image" alt="User Image">
                                     <span class="hidden-xs"><?php echo ucfirst($this->session->userdata('ufullname')); ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- User image -->
                                     <li class="user-header">
-                                        <img src="<?php echo media_url() ?>/img/photo.jpg" class="img-circle" alt="User Image">
+                                        <img src="<?php echo media_url() ?>/img/user.png" class="img-circle" alt="User Image">
 
                                         <p>
                                             <?php echo ucfirst($this->session->userdata('ufullname')); ?> - <?php echo ucfirst($this->session->userdata('urolename')); ?>
