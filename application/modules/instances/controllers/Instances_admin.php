@@ -64,8 +64,12 @@ class Instances_admin extends CI_Controller {
                     )
             );
 
-            $this->session->set_flashdata('success', $data['operation'] . ' Instansi Berhasil');
-            redirect('admin/instances');
+            if ($this->input->is_ajax_request()) {
+                echo $status;
+            } else {
+                $this->session->set_flashdata('success', $data['operation'] . ' Instansi Berhasil');
+                redirect('admin/instances');
+            }
         } else {
             if ($this->input->post('instance_id')) {
                 redirect('admin/instances/edit/' . $this->input->post('instance_id'));

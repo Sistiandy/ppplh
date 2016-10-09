@@ -36,8 +36,12 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <!-- jQuery 2.2.3 -->
+        <script src="<?php echo media_url() ?>/js/jquery-2.2.3.min.js"></script>
+        <!-- Angular JS-->
+        <script src="<?php echo media_url() ?>/js/angular.min.js"></script>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition skin-blue sidebar-mini" <?php echo isset($ngapp) ? $ngapp : null; ?>>
         <div class="wrapper">
 
             <header class="main-header">
@@ -106,8 +110,6 @@
         </div>
         <!-- ./wrapper -->
 
-        <!-- jQuery 2.2.3 -->
-        <script src="<?php echo media_url() ?>/js/jquery-2.2.3.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="<?php echo media_url() ?>/js/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -127,7 +129,6 @@
         <!-- DataTables -->
         <script src="<?php echo media_url() ?>/js/jquery.dataTables.min.js"></script>
         <script src="<?php echo media_url() ?>/js/dataTables.bootstrap.min.js"></script>
-
 
         <script type="text/javascript">
                     $(document).ready(function () {

@@ -2,32 +2,31 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-    /**
-     * Activities controllers Class
-     *
-     * @package     SYSCMS
-     * @subpackage  Controllers
-     * @category    Controllers
-     * @author      Sistiandy Syahbana nugraha <sistiandy.web.id>
-     */
+/**
+ * Activities controllers Class
+ *
+ * @package     SYSCMS
+ * @subpackage  Controllers
+ * @category    Controllers
+ * @author      Sistiandy Syahbana nugraha <sistiandy.web.id>
+ */
 class Activities_admin extends CI_Controller {
-    
-  public function __construct()
-    {
+
+    public function __construct() {
         parent::__construct();
         if ($this->session->userdata('logged') == NULL) {
             header("Location:" . site_url('admin/auth/login') . "?location=" . urlencode($_SERVER['REQUEST_URI']));
         }
         $this->load->model('activities/Activities_model');
     }
-    
+
     public function index() {
         $data['activities'] = $this->Activities_model->get();
         $data['title'] = 'Jenis Kegiatan';
         $data['main'] = 'activities/list';
         $this->load->view('admin/layout', $data);
     }
-    
+
     // Add User and Update
     public function add($id = NULL) {
         $this->load->library('form_validation');
@@ -60,8 +59,12 @@ class Activities_admin extends CI_Controller {
                     )
             );
 
-            $this->session->set_flashdata('success', $data['operation'] . ' Jenis Kegiatan Berhasil');
-            redirect('admin/activities');
+            if ($this->input->is_ajax_request()) {
+                echo $status;
+            } else {
+                $this->session->set_flashdata('success', $data['operation'] . ' Jenis Kegiatan Berhasil');
+                redirect('admin/activities');
+            };
         } else {
             if ($this->input->post('activity_id')) {
                 redirect('admin/activities/edit/' . $this->input->post('activity_id'));
@@ -81,7 +84,7 @@ class Activities_admin extends CI_Controller {
             $this->load->view('admin/layout', $data);
         }
     }
-    
+
     // View data detail
     public function view($id = NULL) {
         $data['activity'] = $this->Activities_model->get(array('id' => $id));

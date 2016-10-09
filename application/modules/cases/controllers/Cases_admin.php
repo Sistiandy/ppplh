@@ -2,32 +2,31 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-    /**
-     * Cases controllers Class
-     *
-     * @package     SYSCMS
-     * @subpackage  Controllers
-     * @category    Controllers
-     * @author      Sistiandy Syahbana nugraha <sistiandy.web.id>
-     */
+/**
+ * Cases controllers Class
+ *
+ * @package     SYSCMS
+ * @subpackage  Controllers
+ * @category    Controllers
+ * @author      Sistiandy Syahbana nugraha <sistiandy.web.id>
+ */
 class Cases_admin extends CI_Controller {
-    
-  public function __construct()
-    {
+
+    public function __construct() {
         parent::__construct();
         if ($this->session->userdata('logged') == NULL) {
             header("Location:" . site_url('admin/auth/login') . "?location=" . urlencode($_SERVER['REQUEST_URI']));
         }
         $this->load->model('cases/Cases_model');
     }
-    
+
     public function index() {
         $data['cases'] = $this->Cases_model->get();
         $data['title'] = 'Kasus Pelanggaran';
         $data['main'] = 'cases/list';
         $this->load->view('admin/layout', $data);
     }
-    
+
     // Add User and Update
     public function add($id = NULL) {
         $this->load->library('form_validation');
@@ -70,8 +69,12 @@ class Cases_admin extends CI_Controller {
                     )
             );
 
-            $this->session->set_flashdata('success', $data['operation'] . ' Kasus Pelanggaran Berhasil');
-            redirect('admin/cases');
+            if ($this->input->is_ajax_request()) {
+                echo $status;
+            } else {
+                $this->session->set_flashdata('success', $data['operation'] . ' Kasus Pelanggaran Berhasil');
+                redirect('admin/cases');
+            }
         } else {
             if ($this->input->post('case_id')) {
                 redirect('admin/cases/edit/' . $this->input->post('case_id'));
@@ -89,7 +92,8 @@ class Cases_admin extends CI_Controller {
             $this->load->model('instances/Instances_model');
             $this->load->model('channels/Channels_model');
             $this->load->model('activities/Activities_model');
-            
+
+            $data['ngapp'] = 'ng-app="app"';
             $data['instances'] = $this->Instances_model->get();
             $data['channels'] = $this->Channels_model->get();
             $data['activities'] = $this->Activities_model->get();
@@ -98,7 +102,7 @@ class Cases_admin extends CI_Controller {
             $this->load->view('admin/layout', $data);
         }
     }
-    
+
     // View data detail
     public function view($id = NULL) {
         $data['case'] = $this->Cases_model->get(array('id' => $id));
