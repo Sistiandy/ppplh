@@ -22,6 +22,7 @@
                         <table class="table table-init table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama Kegiatan</th>
                                     <th>Jenis Kegiatan</th>
                                     <th>Alamat</th>
@@ -34,9 +35,11 @@
                             <tbody>
                                 <?php
                                 if ($cases > 0) {
+                                    $i = 1;
                                     foreach ($cases as $row):
                                         ?>
                                         <tr>
+                                            <td><?php echo $i; ?></td>
                                             <td><?php echo $row['instance_name']; ?></td>
                                             <td><?php echo $row['activity_title']; ?></td>
                                             <td><?php echo $row['case_address']; ?></td>
@@ -73,6 +76,7 @@
                                         <!-- /.modal-dialog -->
                                     </div>
                                     <?php
+                                    $i++;
                                 endforeach;
                             }
                             ?>

@@ -22,6 +22,7 @@
                         <table class="table table-init table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama</th>
                                     <th>No. Telepon</th>
                                     <th>Email</th>
@@ -31,9 +32,11 @@
                             <tbody>
                                 <?php
                                 if ($instances > 0) {
+                                    $i = 1;
                                     foreach ($instances as $row):
                                         ?>
                                         <tr>
+                                            <td><?php echo $i; ?></td>
                                             <td><?php echo $row['instance_name']; ?></td>
                                             <td><?php echo $row['instance_phone']; ?></td>
                                             <td><?php echo $row['instance_email']; ?></td>
@@ -67,6 +70,7 @@
                                         <!-- /.modal-dialog -->
                                     </div>
                                     <?php
+                                    $i++;
                                 endforeach;
                             }
                             ?>

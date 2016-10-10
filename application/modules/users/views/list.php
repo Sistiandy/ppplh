@@ -22,6 +22,7 @@
                         <table class="table table-init table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>Peran</th>
@@ -31,9 +32,11 @@
                             <tbody>
                                 <?php
                                 if ($users > 0) {
+                                    $i = 1;
                                     foreach ($users as $row):
                                         ?>
                                         <tr>
+                                            <td><?php echo $i; ?></td>
                                             <td><?php echo $row['user_full_name']; ?></td>
                                             <td><?php echo $row['user_email']; ?></td>
                                             <td><?php echo $row['role_name']; ?></td>
@@ -69,6 +72,7 @@
                                         <!-- /.modal-dialog -->
                                     </div>
                                     <?php
+                                    $i++;
                                 endforeach;
                             }
                             ?>

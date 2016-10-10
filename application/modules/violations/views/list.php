@@ -22,6 +22,7 @@
                         <table class="table table-init table-bordered table-striped">
                             <thead>
                                 <tr>
+                                    <th>No</th>
                                     <th>Nama Pelanggaran</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -29,9 +30,11 @@
                             <tbody>
                                 <?php
                                 if ($violations > 0) {
+                                    $i = 1;
                                     foreach ($violations as $row):
                                         ?>
                                         <tr>
+                                            <td><?php echo $i; ?></td>
                                             <td><?php echo $row['violation_title']; ?></td>
                                             <td>
                                                 <a href="<?php echo site_url('admin/violations/view/' . $row['violation_id']) ?>" data-toggle="tooltip" title="Lihat" class="text-warning"><span class="fa fa-eye"></span></a> &nbsp;
@@ -63,6 +66,7 @@
                                         <!-- /.modal-dialog -->
                                     </div>
                                     <?php
+                                    $i++;
                                 endforeach;
                             }
                             ?>
