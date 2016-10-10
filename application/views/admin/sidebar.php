@@ -116,6 +116,19 @@
                     </li>
                 </ul>
             </li>
+            <li class="<?php echo ($this->uri->segment(2) == 'logs') ? 'active' : '' ?> treeview">
+                <a href="#">
+                    <i class="fa fa-history"></i> <span>Log Aktifitas</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?php echo ($this->uri->segment(2) == 'logs' AND $this->uri->segment(3) != 'add') ? 'active' : '' ?> ">
+                        <a href="<?php echo site_url('admin/logs') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'logs' AND $this->uri->segment(3) != 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Log</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

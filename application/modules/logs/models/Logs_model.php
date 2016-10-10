@@ -34,7 +34,7 @@ class Logs_model extends CI_Model {
         if (isset($params['order_by'])) {
             $this->db->order_by($params['order_by'], 'desc');
         } else {
-            $this->db->order_by('log_last_update', 'desc');
+            $this->db->order_by('log_id', 'desc');
         }
         $this->db->select('logs.log_id, log_date, log_action, log_module, log_info, logs.user_id');
         $this->db->select('user_full_name');
