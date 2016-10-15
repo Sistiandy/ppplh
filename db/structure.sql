@@ -160,6 +160,7 @@ CREATE  TABLE IF NOT EXISTS `cases` (
   `case_region` ENUM('Jakarta Pusat', 'Jakarta Selatan', 'Jakarta Timur', 'Jakarta Barat', 'Jakarta Utara') NULL ,
   `channels_channel_id` INT NULL ,
   `case_date` DATE NULL ,
+  `case_note` TEXT NULL ,
   `sanksi_type` ENUM('Teguran Tertulis', 'Paksaan Pemerintah') NULL ,
   `case_input_date` TIMESTAMP NULL ,
   `case_last_update` TIMESTAMP NULL ,
@@ -167,6 +168,17 @@ CREATE  TABLE IF NOT EXISTS `cases` (
   `activities_activity_id` INT NULL ,
   `instances_instance_id` INT NULL ,
   `stage_id` INT NULL ,
+  `case_for_draft` TINYINT(1) NULL COMMENT '1=Ya, 0=TIdak' ,
+  `case_is_signatured` TINYINT(1) NULL COMMENT '1=Ya, 0=TIdak' ,
+  `sent_meeting_invitation` TINYINT(1) NULL COMMENT '1=Sudah, 0=Belum' ,
+  `berita_acara_pemanggilan` TINYINT(1) NULL COMMENT '1=Sudah, 0=Belum' ,
+  `case_is_published` TINYINT(1) NULL COMMENT '1=Sudah, 0=Belum' ,
+  `create_assignment_verification_letter` TINYINT(1) NULL COMMENT '1=Sudah, 0=Belum' ,
+  `sent_report` TINYINT(1) NULL COMMENT '1=Sudah, 0=Belum' ,
+  `case_evaluation1_note` TEXT NULL ,
+  `case_evaluation1_status` ENUM('Taat', 'Belum Taat') NULL ,
+  `case_evaluation2_note` TEXT NULL ,
+  `case_evaluation2_status` ENUM('Taat', 'Belum Taat') NULL ,
   PRIMARY KEY (`case_id`) ,
   INDEX `fk_cases_channels1_idx` (`channels_channel_id` ASC) ,
   INDEX `fk_cases_users1_idx` (`users_user_id` ASC) ,
@@ -202,6 +214,10 @@ CREATE  TABLE IF NOT EXISTS `cases_has_violations` (
   `cases_has_violations_id` INT NOT NULL AUTO_INCREMENT ,
   `cases_case_id` INT NULL ,
   `violations_violation_id` INT NULL ,
+  `verification_by_analis` TINYINT(1) NULL COMMENT '1=Ya, 0=Tidak' ,
+  `sanksi_periode` DECIMAL(10,0) NULL ,
+  `verification_sanksi1` TINYINT(1) NULL COMMENT '1=Sudah, 0=Belum' ,
+  `verification_sanksi2` TINYINT(1) NULL COMMENT '1=Sudah, 0=Belum' ,
   PRIMARY KEY (`cases_has_violations_id`) ,
   INDEX `fk_cases_has_violations_violations1_idx` (`violations_violation_id` ASC) ,
   INDEX `fk_cases_has_violations_cases1_idx` (`cases_case_id` ASC) ,
@@ -252,6 +268,48 @@ CREATE  TABLE IF NOT EXISTS `cases_disposisi` (
   CONSTRAINT `fk_cases_disposisi_users1`
     FOREIGN KEY (`users_user_id` )
     REFERENCES `users` (`user_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `pasal`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `pasal` (
+  `pasal_id` INT NOT NULL AUTO_INCREMENT ,
+  `pasal_title` VARCHAR(255) NULL ,
+  `pasal_input_date` TIMESTAMP NULL ,
+  `pasal_last_update` TIMESTAMP NULL ,
+  `users_user_id` INT(11) NULL ,
+  PRIMARY KEY (`pasal_id`) ,
+  INDEX `fk_pasal_users1_idx` (`users_user_id` ASC) ,
+  CONSTRAINT `fk_pasal_users1`
+    FOREIGN KEY (`users_user_id` )
+    REFERENCES `users` (`user_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cases_has_pasal`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `cases_has_pasal` (
+  `cases_has_pasal_id` INT NOT NULL AUTO_INCREMENT ,
+  `cases_case_id` INT NULL ,
+  `pasal_pasal_id` INT NULL ,
+  PRIMARY KEY (`cases_has_pasal_id`) ,
+  INDEX `fk_cases_has_pasal_pasal1_idx` (`pasal_pasal_id` ASC) ,
+  INDEX `fk_cases_has_pasal_cases1_idx` (`cases_case_id` ASC) ,
+  CONSTRAINT `fk_cases_has_pasal_cases1`
+    FOREIGN KEY (`cases_case_id` )
+    REFERENCES `cases` (`case_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cases_has_pasal_pasal1`
+    FOREIGN KEY (`pasal_pasal_id` )
+    REFERENCES `pasal` (`pasal_id` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

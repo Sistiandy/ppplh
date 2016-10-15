@@ -107,7 +107,7 @@ class Instances_admin extends CI_Controller {
             $this->Logs_model->add(
                     array(
                         'log_date' => date('Y-m-d H:i:s'),
-                        'user_id' => $id,
+                        'user_id' => $this->session->userdata('uid'),
                         'log_module' => 'instances',
                         'log_action' => 'Hapus',
                         'log_info' => 'ID:' . $id . ';Title:' . $this->input->post('delName')

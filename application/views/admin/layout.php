@@ -133,6 +133,7 @@
         <script type="text/javascript">
                     $(document).ready(function () {
                         $(".autocomplete").select2();
+                        $(".textarea").wysihtml5();
                     });
         </script>
 

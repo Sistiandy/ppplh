@@ -21,11 +21,7 @@ class Cases_admin extends CI_Controller {
     }
 
     public function index() {
-        if($this->session->userdata('uroleid') != ROLE_ANALIS){
         $data['cases'] = $this->Cases_model->get();
-        }else{
-           $data['cases'] = $this->Cases_model->getCasesDisposisi(array('to_role_id' => ROLE_ANALIS)); 
-        }
         $data['title'] = 'Kasus Pelanggaran';
         $data['main'] = 'cases/list';
         $this->load->view('admin/layout', $data);
@@ -55,6 +51,7 @@ class Cases_admin extends CI_Controller {
             $params['activities_activity_id'] = $this->input->post('activity_id');
             $params['instances_instance_id'] = $this->input->post('instance_id');
             $params['case_address'] = $this->input->post('case_address');
+            $params['case_note'] = $this->input->post('case_note');
             $params['case_region'] = $this->input->post('case_region');
             $params['channels_channel_id'] = $this->input->post('channel_id');
             $params['case_date'] = $this->input->post('case_date');
@@ -62,12 +59,24 @@ class Cases_admin extends CI_Controller {
             $params['case_last_update'] = date('Y-m-d H:i:s');
             $status = $this->Cases_model->add($params);
 
-            $violationId = $_POST['violation_id'];
-            $cpt = count($_POST['violation_id']);
-            for ($i = 0; $i < $cpt; $i++) {
-                $param['violations_violation_id'] = $violationId[$i];
-                $param['cases_case_id'] = $status;
-                $this->Cases_model->addHasViolations($param);
+            if (isset($_POST['violation_id'])) {
+                $violationId = $_POST['violation_id'];
+                $cpt = count($_POST['violation_id']);
+                for ($i = 0; $i < $cpt; $i++) {
+                    $param['violations_violation_id'] = $violationId[$i];
+                    $param['cases_case_id'] = $status;
+                    $this->Cases_model->addHasViolations($param);
+                }
+            }
+
+            if (isset($_POST['pasal_id'])) {
+                $pasalId = $_POST['pasal_id'];
+                $cpt = count($_POST['pasal_id']);
+                for ($i = 0; $i < $cpt; $i++) {
+                    $param['pasal_pasal_id'] = $pasalId[$i];
+                    $param['cases_case_id'] = $status;
+                    $this->Cases_model->addHasPasal($param);
+                }
             }
 
             // activity log
@@ -104,10 +113,12 @@ class Cases_admin extends CI_Controller {
             }
             $this->load->model('channels/Channels_model');
             $this->load->model('violations/Violations_model');
+            $this->load->model('pasal/Pasal_model');
 
             $data['ngapp'] = 'ng-app="app"';
             $data['channels'] = $this->Channels_model->get();
             $data['violations'] = $this->Violations_model->get();
+            $data['pasal'] = $this->Pasal_model->get();
             $data['title'] = $data['operation'] . ' Kasus Pelanggaran';
             $data['main'] = 'cases/add';
             $this->load->view('admin/layout', $data);
@@ -116,8 +127,12 @@ class Cases_admin extends CI_Controller {
 
     // View data detail
     public function view($id = NULL) {
+
+        $data['ngapp'] = 'ng-app="app"';
         $data['case'] = $this->Cases_model->get(array('id' => $id));
         $data['casesViolations'] = $this->Cases_model->getHasViolations(array('cases_id' => $id));
+        $data['casesPasal'] = $this->Cases_model->getHasPasal(array('cases_id' => $id));
+        $data['casesDisposisi'] = $this->Cases_model->getCasesDisposisi(array('cases_id' => $id));
         $data['title'] = 'Kasus Pelanggaran';
         $data['main'] = 'cases/view';
         $this->load->view('admin/layout', $data);
@@ -182,6 +197,30 @@ class Cases_admin extends CI_Controller {
             redirect('admin/cases/view/' . $id);
         } elseif (!$_POST) {
             redirect('admin/cases/view/' . $id);
+        }
+    }
+
+    // Verify to violations
+    public function verifyViolations() {
+        $id = $this->input->post('cases_has_violations_id');
+        $desc = $this->input->post('desc');
+        if ($this->input->is_ajax_request()) {
+            if ($desc == 'yes') {
+                $this->Cases_model->addHasViolations(array('cases_has_violations_id' => $id, 'verification_by_analis' => TRUE));
+            } else {
+                $this->Cases_model->addHasViolations(array('cases_has_violations_id' => $id, 'verification_by_analis' => FALSE));
+            }
+            echo $id;
+        }
+    }
+
+    // Verify to violations
+    public function addSanksiPeriode() {
+        $id = $this->input->post('cases_has_violations_id');
+        $sanksi = $this->input->post('sanksi_periode');
+        if ($this->input->is_ajax_request()) {
+            $this->Cases_model->addHasViolations(array('cases_has_violations_id' => $id, 'sanksi_periode' => $sanksi));
+            echo $id;
         }
     }
 

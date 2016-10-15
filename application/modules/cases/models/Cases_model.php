@@ -37,7 +37,10 @@ class Cases_model extends CI_Model {
             $this->db->order_by('case_last_update', 'desc');
         }
         $this->db->select('cases.case_id, case_address, case_region,
-            case_date, sanksi_type, stage_id,
+            case_date, sanksi_type, stage_id, case_for_draft, case_is_signatured, sent_meeting_invitation,
+            berita_acara_pemanggilan, case_is_published, create_assignment_verification_letter,
+            sent_report, case_evaluation1_note, case_evaluation1_status,
+            case_evaluation2_note, case_evaluation2_status, case_note,
             case_input_date, case_last_update');
         $this->db->select('cases.users_user_id, users.user_full_name');
         $this->db->select('instances_instance_id, instances.instance_name');
@@ -95,6 +98,54 @@ class Cases_model extends CI_Model {
         if (isset($data['stage_id'])) {
             $this->db->set('stage_id', $data['stage_id']);
         }
+
+        if (isset($data['case_note'])) {
+            $this->db->set('case_note', $data['case_note']);
+        }
+
+        if (isset($data['case_for_draft'])) {
+            $this->db->set('case_for_draft', $data['case_for_draft']);
+        }
+
+        if (isset($data['case_is_signatured'])) {
+            $this->db->set('case_is_signatured', $data['case_is_signatured']);
+        }
+
+        if (isset($data['sent_meeting_invitation'])) {
+            $this->db->set('sent_meeting_invitation', $data['sent_meeting_invitation']);
+        }
+
+        if (isset($data['berita_acara_pemanggilan'])) {
+            $this->db->set('berita_acara_pemanggilan', $data['berita_acara_pemanggilan']);
+        }
+
+        if (isset($data['case_is_published'])) {
+            $this->db->set('case_is_published', $data['case_is_published']);
+        }
+
+        if (isset($data['create_assignment_verification_letter'])) {
+            $this->db->set('create_assignment_verification_letter', $data['create_assignment_verification_letter']);
+        }
+
+        if (isset($data['sent_report'])) {
+            $this->db->set('sent_report', $data['sent_report']);
+        }
+
+        if (isset($data['case_evaluation1_note'])) {
+            $this->db->set('case_evaluation1_note', $data['case_evaluation1_note']);
+        }
+
+        if (isset($data['case_evaluation1_status'])) {
+            $this->db->set('case_evaluation1_status', $data['case_evaluation1_status']);
+        }
+
+        if (isset($data['case_evaluation2_note'])) {
+            $this->db->set('case_evaluation2_note', $data['case_evaluation2_note']);
+        }
+
+        if (isset($data['case_evaluation2_status'])) {
+            $this->db->set('case_evaluation2_status', $data['case_evaluation2_status']);
+        }
         
         if (isset($data['case_input_date'])) {
             $this->db->set('case_input_date', $data['case_input_date']);
@@ -149,7 +200,8 @@ class Cases_model extends CI_Model {
         } else {
             $this->db->order_by('cases_has_violations_id', 'desc');
         }
-        $this->db->select('cases_has_violations_id, cases_case_id, violations_violation_id');
+        $this->db->select('cases_has_violations_id, cases_case_id, violations_violation_id,
+                verification_by_analis, sanksi_periode, verification_sanksi1, verification_sanksi2');
         $this->db->select('violations.violation_title');
 
         $this->db->join('violations', 'violations.violation_id = cases_has_violations.violations_violation_id', 'left');
@@ -176,6 +228,22 @@ class Cases_model extends CI_Model {
         if (isset($data['violations_violation_id'])) {
             $this->db->set('violations_violation_id', $data['violations_violation_id']);
         }
+
+        if (isset($data['verification_by_analis'])) {
+            $this->db->set('verification_by_analis', $data['verification_by_analis']);
+        }
+
+        if (isset($data['sanksi_periode'])) {
+            $this->db->set('sanksi_periode', $data['sanksi_periode']);
+        }
+
+        if (isset($data['verification_sanksi1'])) {
+            $this->db->set('verification_sanksi1', $data['verification_sanksi1']);
+        }
+
+        if (isset($data['verification_sanksi2'])) {
+            $this->db->set('verification_sanksi2', $data['verification_sanksi2']);
+        }
         
         if (isset($data['cases_has_violations_id'])) {
             $this->db->where('cases_has_violations_id', $data['cases_has_violations_id']);
@@ -194,6 +262,75 @@ class Cases_model extends CI_Model {
     function deleteHasViolations($id) {
         $this->db->where('cases_has_violations_id', $id);
         $this->db->delete('cases_has_violations');
+    }
+
+    // Get From Databases
+    function getHaspasal($params = array()) {
+        if (isset($params['id'])) {
+            $this->db->where('cases_has_pasal_id', $params['id']);
+        }
+        if (isset($params['cases_id'])) {
+            $this->db->where('cases_case_id', $params['cases_id']);
+        }
+
+        if (isset($params['limit'])) {
+            if (!isset($params['offset'])) {
+                $params['offset'] = NULL;
+            }
+
+            $this->db->limit($params['limit'], $params['offset']);
+        }
+
+        if (isset($params['order_by'])) {
+            $this->db->order_by($params['order_by'], 'desc');
+        } else {
+            $this->db->order_by('cases_has_pasal_id', 'desc');
+        }
+        $this->db->select('cases_has_pasal_id, cases_case_id, pasal_pasal_id');
+        $this->db->select('pasal.pasal_title');
+
+        $this->db->join('pasal', 'pasal.pasal_id = cases_has_pasal.pasal_pasal_id', 'left');
+        $res = $this->db->get('cases_has_pasal');
+
+        if (isset($params['id'])) {
+            return $res->row_array();
+        } else {
+            return $res->result_array();
+        }
+    }
+
+    // Insert some data to table
+    function addHasPasal($data = array()) {
+
+        if (isset($data['cases_has_pasal_id'])) {
+            $this->db->set('cases_has_pasal_id', $data['cases_has_pasal_id']);
+        }
+
+        if (isset($data['cases_case_id'])) {
+            $this->db->set('cases_case_id', $data['cases_case_id']);
+        }
+
+        if (isset($data['pasal_pasal_id'])) {
+            $this->db->set('pasal_pasal_id', $data['pasal_pasal_id']);
+        }
+        
+        if (isset($data['cases_has_pasal_id'])) {
+            $this->db->where('cases_has_pasal_id', $data['cases_has_pasal_id']);
+            $this->db->update('cases_has_pasal');
+            $id = $data['cases_has_pasal_id'];
+        } else {
+            $this->db->insert('cases_has_pasal');
+            $id = $this->db->insert_id();
+        }
+
+        $status = $this->db->affected_rows();
+        return ($status == 0) ? FALSE : $id;
+    }
+
+    // Drop some data to table
+    function deleteHasPasal($id) {
+        $this->db->where('cases_has_pasal_id', $id);
+        $this->db->delete('cases_has_pasal');
     }
 
     // Get From Databases

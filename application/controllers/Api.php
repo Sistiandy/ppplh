@@ -41,5 +41,14 @@ class Api extends CI_Controller {
                 ->set_content_type('application/json')
                 ->set_output(json_encode($res));
     }
+    
+    public function getViolationsByCase($id = NULL) {
+        $this->load->model('cases/Cases_model');
+        $res = $this->Cases_model->getHasViolations(array('cases_id' => $id));
+
+        $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode($res));
+    }
 
 }

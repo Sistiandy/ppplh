@@ -100,6 +100,22 @@
                     </li>
                 </ul>
             </li>
+            <li class="<?php echo ($this->uri->segment(2) == 'pasal') ? 'active' : '' ?> treeview">
+                <a href="#">
+                    <i class="fa fa-gavel"></i> <span>Pasal</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?php echo ($this->uri->segment(2) == 'pasal' AND $this->uri->segment(3) != 'add') ? 'active' : '' ?> ">
+                        <a href="<?php echo site_url('admin/pasal') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'pasal' AND $this->uri->segment(3) != 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Pasal</a>
+                    </li>
+                    <li class="<?php echo ($this->uri->segment(2) == 'pasal' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
+                        <a href="<?php echo site_url('admin/pasal/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'pasal' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Pasal</a>
+                    </li>
+                </ul>
+            </li>
             <li class="<?php echo ($this->uri->segment(2) == 'users') ? 'active' : '' ?> treeview">
                 <a href="#">
                     <i class="fa fa-users"></i> <span>Pengguna</span>

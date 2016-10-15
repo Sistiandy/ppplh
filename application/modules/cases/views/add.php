@@ -7,6 +7,7 @@ if (isset($case)) {
     $RegionValue = $case['case_region'];
     $ChannelValue = $case['channels_channel_id'];
     $DateValue = $case['case_date'];
+    $NoteValue = $case['case_note'];
 } else {
     $ActivityValue = set_value('activity_id');
     $InstanceValue = set_value('instance_id');
@@ -14,6 +15,7 @@ if (isset($case)) {
     $RegionValue = set_value('case_region');
     $ChannelValue = set_value('channel_id');
     $DateValue = set_value('case_date');
+    $NoteValue = set_value('case_note');
 }
 ?>
 
@@ -89,15 +91,53 @@ if (isset($case)) {
                             <input type="text" placeholder="Tanggal" class="form-control datepicker" name="case_date" value="<?php echo $DateValue ?>">
                         </div>
                         <div class="form-group">
-                            <label>Pilih Pelanggaran <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
-                            <?php foreach ($violations as $row): ?>
-                            <div class="checkbox">
-                                <label>
-                                    <input name="violation_id[]" value="<?php echo $row['violation_id'] ?>" type="checkbox"> <?php echo $row['violation_title'] ?>
-                                </label>
-                            </div>
-                            <?php endforeach; ?>
+                            <label>Memperhatikan <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
+                            <textarea class="form-control textarea" placeholder="Memperhatikan" name="case_note"><?php echo $NoteValue ?></textarea>
                         </div>
+                        <?php if (!isset($case)) { ?>
+                            <div class="form-group" >
+                                <label>Pilih Pelanggaran <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
+                                <div class="col-md-12 pre-scrollable" style="max-height: 200px">
+                                    <?php
+                                    $i = 1;
+                                    foreach ($violations as $row):
+                                        ?>
+                                        <div class="checkbox">
+                                            <label>
+                                                <?php echo $i . '. ' . $row['violation_title'] ?>
+                                            </label>
+                                            <span class="pull-right">
+                                                <input name="violation_id[]" value="<?php echo $row['violation_id'] ?>" type="checkbox">
+                                            </span>
+                                        </div>
+                                        <?php
+                                        $i++;
+                                    endforeach;
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label>Pilih Pasal Yang Dilanggar <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
+                                <div class="col-md-12 pre-scrollable" style="max-height: 200px">
+                                    <?php
+                                    $i = 1;
+                                    foreach ($pasal as $row):
+                                        ?>
+                                        <div class="checkbox">
+                                            <label>
+                                                <?php echo $i . '. ' . $row['pasal_title'] ?>
+                                            </label>
+                                            <span class="pull-right">
+                                                <input name="pasal_id[]" value="<?php echo $row['pasal_id'] ?>" type="checkbox">
+                                            </span>
+                                        </div>
+                                        <?php
+                                        $i++;
+                                    endforeach;
+                                    ?>
+                                </div>
+                            </div>
+                        <?php } ?>
                         <p class="text-muted">*) Kolom wajib diisi.</p>
                     </div>
                     <!-- /.box-body -->
@@ -226,7 +266,7 @@ if (isset($case)) {
             var url = BASEURL + 'api/getInstances';
             $http.get(url).then(function (response) {
                 $scope.instances = response.data;
-            $scope.instanceModel = '<?php echo $InstanceValue ?>';
+                $scope.instanceModel = '<?php echo $InstanceValue ?>';
             })
         };
         $scope.addInstance = function (data) {
@@ -257,7 +297,7 @@ if (isset($case)) {
             var url = BASEURL + 'api/getActivities';
             $http.get(url).then(function (response) {
                 $scope.activities = response.data;
-            $scope.activityModel = '<?php echo $ActivityValue ?>';
+                $scope.activityModel = '<?php echo $ActivityValue ?>';
             })
         };
         $scope.addActivity = function (data) {
