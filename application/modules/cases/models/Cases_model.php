@@ -39,7 +39,7 @@ class Cases_model extends CI_Model {
         $this->db->select('cases.case_id, case_address, case_region,
             case_date, sanksi_type, stage_id, case_for_draft, case_is_signatured, sent_meeting_invitation,
             berita_acara_pemanggilan, case_is_published, create_assignment_verification_letter,
-            sent_report, case_evaluation1_note, case_evaluation1_status,
+            sent_report, case_evaluation1_note, case_evaluation1_status, case_final_status,
             case_evaluation2_note, case_evaluation2_status, case_note,
             case_input_date, case_last_update');
         $this->db->select('cases.users_user_id, users.user_full_name');
@@ -93,6 +93,10 @@ class Cases_model extends CI_Model {
 
         if (isset($data['sanksi_type'])) {
             $this->db->set('sanksi_type', $data['sanksi_type']);
+        }
+
+        if (isset($data['case_final_status'])) {
+            $this->db->set('case_final_status', $data['case_final_status']);
         }
 
         if (isset($data['stage_id'])) {
@@ -185,6 +189,15 @@ class Cases_model extends CI_Model {
         }
         if (isset($params['cases_id'])) {
             $this->db->where('cases_case_id', $params['cases_id']);
+        }
+        if (isset($params['verification_by_analis'])) {
+            $this->db->where('verification_by_analis', $params['verification_by_analis']);
+        }
+        if (isset($params['verification_sanksi1'])) {
+            $this->db->where('verification_sanksi1', $params['verification_sanksi1']);
+        }
+        if (isset($params['verification_sanksi2'])) {
+            $this->db->where('verification_sanksi2', $params['verification_sanksi2']);
         }
 
         if (isset($params['limit'])) {

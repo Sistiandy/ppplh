@@ -179,6 +179,7 @@ CREATE  TABLE IF NOT EXISTS `cases` (
   `case_evaluation1_status` ENUM('Taat', 'Belum Taat') NULL ,
   `case_evaluation2_note` TEXT NULL ,
   `case_evaluation2_status` ENUM('Taat', 'Belum Taat') NULL ,
+  `case_final_status` ENUM('Taat', 'Tidak Taat') NULL ,
   PRIMARY KEY (`case_id`) ,
   INDEX `fk_cases_channels1_idx` (`channels_channel_id` ASC) ,
   INDEX `fk_cases_users1_idx` (`users_user_id` ASC) ,
