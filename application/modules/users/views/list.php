@@ -42,9 +42,11 @@
                                             <td><?php echo $row['role_name']; ?></td>
                                             <td>
                                                 <a href="<?php echo site_url('admin/users/view/' . $row['user_id']) ?>" data-toggle="tooltip" title="Lihat" class="text-warning"><span class="fa fa-eye"></span></a> &nbsp;
-                                                <a href="<?php echo site_url('admin/users/edit/' . $row['user_id']) ?>" data-toggle="tooltip" title="Sunting" class="text-success"><span class="fa fa-edit"></span></a> &nbsp;
-                                                <?php if ($row['user_id'] != $this->session->userdata('uid')) { ?>
-                                                    <a href="#delModal<?php echo $row['user_id']; ?>" data-toggle="modal" class="text-danger"><span data-toggle="tooltip" title="Hapus" class="fa fa-trash"></span></a> &nbsp;
+                                                <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                                                    <a href="<?php echo site_url('admin/users/edit/' . $row['user_id']) ?>" data-toggle="tooltip" title="Sunting" class="text-success"><span class="fa fa-edit"></span></a> &nbsp;
+                                                    <?php if ($row['user_id'] != $this->session->userdata('uid')) { ?>
+                                                        <a href="#delModal<?php echo $row['user_id']; ?>" data-toggle="modal" class="text-danger"><span data-toggle="tooltip" title="Hapus" class="fa fa-trash"></span></a> &nbsp;
+                                                    <?php } ?>
                                                 <?php } ?>
                                             </td>
                                         </tr>

@@ -47,9 +47,11 @@
                     <li class="<?php echo ($this->uri->segment(2) == 'cases' AND $this->uri->segment(3) != 'add') ? 'active' : '' ?> ">
                         <a href="<?php echo site_url('admin/cases') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'cases' AND $this->uri->segment(3) != 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Kasus Pelanggaran</a>
                     </li>
-                    <li class="<?php echo ($this->uri->segment(2) == 'cases' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
-                        <a href="<?php echo site_url('admin/cases/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'cases' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Kasus Pelanggaran</a>
-                    </li>
+                    <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                        <li class="<?php echo ($this->uri->segment(2) == 'cases' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
+                            <a href="<?php echo site_url('admin/cases/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'cases' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Kasus Pelanggaran</a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </li>
             <li class="<?php echo ($this->uri->segment(2) == 'instances') ? 'active' : '' ?> treeview">
@@ -63,9 +65,11 @@
                     <li class="<?php echo ($this->uri->segment(2) == 'instances' AND $this->uri->segment(3) != 'add') ? 'active' : '' ?> ">
                         <a href="<?php echo site_url('admin/instances') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'instances' AND $this->uri->segment(3) != 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Instansi</a>
                     </li>
-                    <li class="<?php echo ($this->uri->segment(2) == 'instances' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
-                        <a href="<?php echo site_url('admin/instances/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'instances' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Instansi</a>
-                    </li>
+                    <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                        <li class="<?php echo ($this->uri->segment(2) == 'instances' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
+                            <a href="<?php echo site_url('admin/instances/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'instances' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Instansi</a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </li>
             <li class="<?php echo ($this->uri->segment(2) == 'activities') ? 'active' : '' ?> treeview">
@@ -79,9 +83,11 @@
                     <li class="<?php echo ($this->uri->segment(2) == 'activities' AND $this->uri->segment(3) != 'add') ? 'active' : '' ?> ">
                         <a href="<?php echo site_url('admin/activities') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'activities' AND $this->uri->segment(3) != 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Jenis Kegiatan</a>
                     </li>
-                    <li class="<?php echo ($this->uri->segment(2) == 'activities' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
-                        <a href="<?php echo site_url('admin/activities/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'activities' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Jenis Kegiatan</a>
-                    </li>
+                    <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                        <li class="<?php echo ($this->uri->segment(2) == 'activities' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
+                            <a href="<?php echo site_url('admin/activities/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'activities' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Jenis Kegiatan</a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </li>
             <li class="<?php echo ($this->uri->segment(2) == 'violations') ? 'active' : '' ?> treeview">
@@ -95,9 +101,11 @@
                     <li class="<?php echo ($this->uri->segment(2) == 'violations' AND $this->uri->segment(3) != 'add') ? 'active' : '' ?> ">
                         <a href="<?php echo site_url('admin/violations') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'violations' AND $this->uri->segment(3) != 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Pelanggaran</a>
                     </li>
-                    <li class="<?php echo ($this->uri->segment(2) == 'violations' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
-                        <a href="<?php echo site_url('admin/violations/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'violations' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Pelanggaran</a>
-                    </li>
+                    <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                        <li class="<?php echo ($this->uri->segment(2) == 'violations' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
+                            <a href="<?php echo site_url('admin/violations/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'violations' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Pelanggaran</a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </li>
             <li class="<?php echo ($this->uri->segment(2) == 'pasal') ? 'active' : '' ?> treeview">
@@ -111,9 +119,11 @@
                     <li class="<?php echo ($this->uri->segment(2) == 'pasal' AND $this->uri->segment(3) != 'add') ? 'active' : '' ?> ">
                         <a href="<?php echo site_url('admin/pasal') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'pasal' AND $this->uri->segment(3) != 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Pasal</a>
                     </li>
-                    <li class="<?php echo ($this->uri->segment(2) == 'pasal' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
-                        <a href="<?php echo site_url('admin/pasal/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'pasal' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Pasal</a>
-                    </li>
+                    <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                        <li class="<?php echo ($this->uri->segment(2) == 'pasal' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
+                            <a href="<?php echo site_url('admin/pasal/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'pasal' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Pasal</a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </li>
             <li class="<?php echo ($this->uri->segment(2) == 'users') ? 'active' : '' ?> treeview">
@@ -127,9 +137,11 @@
                     <li class="<?php echo ($this->uri->segment(2) == 'users' AND $this->uri->segment(3) != 'add') ? 'active' : '' ?> ">
                         <a href="<?php echo site_url('admin/users') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'users' AND $this->uri->segment(3) != 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Pengguna</a>
                     </li>
-                    <li class="<?php echo ($this->uri->segment(2) == 'users' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
-                        <a href="<?php echo site_url('admin/users/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'users' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Pengguna</a>
-                    </li>
+                    <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                        <li class="<?php echo ($this->uri->segment(2) == 'users' AND $this->uri->segment(3) == 'add') ? 'active' : '' ?> ">
+                            <a href="<?php echo site_url('admin/users/add') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'users' AND $this->uri->segment(3) == 'add') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Pengguna</a>
+                        </li>
+                    <?php } ?>
                 </ul>
             </li>
             <li class="<?php echo ($this->uri->segment(2) == 'logs') ? 'active' : '' ?> treeview">

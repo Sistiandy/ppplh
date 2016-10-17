@@ -41,7 +41,7 @@
                                     <tr>
                                         <td>Tempat, tanggal lahir</td>
                                         <td>:</td>
-                                        <td><?php echo $user['user_pob'].', '.  pretty_date($user['user_dob'], 'd F Y', FALSE) ?></td>
+                                        <td><?php echo $user['user_pob'] . ', ' . pretty_date($user['user_dob'], 'd F Y', FALSE) ?></td>
                                     </tr>
                                     <tr>
                                         <td>Email</td>
@@ -55,13 +55,15 @@
                             <a href="<?php echo site_url('admin/users') ?>" class="btn btn-app">
                                 <i class="fa fa-arrow-circle-o-left"></i> Batal
                             </a>
-                            <a href="<?php echo site_url('admin/users/edit/' . $user['user_id']) ?>" class="btn btn-app">
-                                <i class="fa fa-edit"></i> Edit
-                            </a>
-                            <?php if ($this->session->userdata('uid') != $user['user_id']) { ?>
-                                <a href="#delModal" data-toggle="modal" class="btn btn-app">
-                                    <i class="fa fa-trash"></i> Hapus
+                            <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                                <a href="<?php echo site_url('admin/users/edit/' . $user['user_id']) ?>" class="btn btn-app">
+                                    <i class="fa fa-edit"></i> Edit
                                 </a>
+                                <?php if ($this->session->userdata('uid') != $user['user_id']) { ?>
+                                    <a href="#delModal" data-toggle="modal" class="btn btn-app">
+                                        <i class="fa fa-trash"></i> Hapus
+                                    </a>
+                                <?php } ?>
                             <?php } ?>
                         </div>
                     </div>
@@ -86,7 +88,7 @@
                     <p>Apakah anda yakin akan menghapus data ini?</p>
                 </div>
                 <div class="modal-footer">
-                    <?php echo form_open('admin/users/delete/'.$user['user_id']); ?>
+                    <?php echo form_open('admin/users/delete/' . $user['user_id']); ?>
                     <input type="hidden" name="delName" value="<?php echo $user['user_full_name']; ?>">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
                     <button type="submit" class="btn btn-outline"><span class="fa fa-check"></span> Hapus</button>

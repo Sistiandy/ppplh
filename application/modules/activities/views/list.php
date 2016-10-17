@@ -38,8 +38,10 @@
                                             <td><?php echo $row['activity_title']; ?></td>
                                             <td>
                                                 <a href="<?php echo site_url('admin/activities/view/' . $row['activity_id']) ?>" data-toggle="tooltip" title="Lihat" class="text-warning"><span class="fa fa-eye"></span></a> &nbsp;
-                                                <a href="<?php echo site_url('admin/activities/edit/' . $row['activity_id']) ?>" data-toggle="tooltip" title="Sunting" class="text-success"><span class="fa fa-edit"></span></a> &nbsp;
-                                                <a href="#delModal<?php echo $row['activity_id']; ?>" data-toggle="modal" class="text-danger"><span data-toggle="tooltip" title="Hapus" class="fa fa-trash"></span></a> &nbsp;
+                                                <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                                                    <a href="<?php echo site_url('admin/activities/edit/' . $row['activity_id']) ?>" data-toggle="tooltip" title="Sunting" class="text-success"><span class="fa fa-edit"></span></a> &nbsp;
+                                                    <a href="#delModal<?php echo $row['activity_id']; ?>" data-toggle="modal" class="text-danger"><span data-toggle="tooltip" title="Hapus" class="fa fa-trash"></span></a> &nbsp;
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                     <div class="modal modal-danger fade" id="delModal<?php echo $row['activity_id']; ?>">

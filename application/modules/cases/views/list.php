@@ -46,12 +46,14 @@
                                             <td><?php echo $row['case_address']; ?></td>
                                             <td><?php echo $row['case_region']; ?></td>
                                             <td><?php echo $row['channel_name']; ?></td>
-                                            <td><?php echo ($row['stage_id'] == STAGE_STAFF)? 'Staff' : 'Analis' ?></td>
+                                            <td><?php echo ($row['stage_id'] == STAGE_STAFF) ? 'Staff' : 'Analis' ?></td>
                                             <td><?php echo pretty_date($row['case_date'], 'l, d F Y', FALSE); ?></td>
                                             <td>
                                                 <a href="<?php echo site_url('admin/cases/view/' . $row['case_id']) ?>" data-toggle="tooltip" title="Lihat" class="text-warning"><span class="fa fa-eye"></span></a> &nbsp;
-                                                <a href="<?php echo site_url('admin/cases/edit/' . $row['case_id']) ?>" data-toggle="tooltip" title="Sunting" class="text-success"><span class="fa fa-edit"></span></a> &nbsp;
-                                                <a href="#delModal<?php echo $row['case_id']; ?>" data-toggle="modal" class="text-danger"><span data-toggle="tooltip" title="Hapus" class="fa fa-trash"></span></a> &nbsp;
+                                                <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                                                    <a href="<?php echo site_url('admin/cases/edit/' . $row['case_id']) ?>" data-toggle="tooltip" title="Sunting" class="text-success"><span class="fa fa-edit"></span></a> &nbsp;
+                                                    <a href="#delModal<?php echo $row['case_id']; ?>" data-toggle="modal" class="text-danger"><span data-toggle="tooltip" title="Hapus" class="fa fa-trash"></span></a> &nbsp;
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                     <div class="modal modal-danger fade" id="delModal<?php echo $row['case_id']; ?>">

@@ -44,13 +44,15 @@
                         <div class="col-md-2">
                             <a href="<?php echo site_url('admin/activities') ?>" class="btn btn-app">
                                 <i class="fa fa-arrow-circle-o-left"></i> Batal
-                            </a>
-                            <a href="<?php echo site_url('admin/activities/edit/' . $activity['activity_id']) ?>" class="btn btn-app">
-                                <i class="fa fa-edit"></i> Edit
-                            </a>
-                            <a href="#delModal" data-toggle="modal" class="btn btn-app">
-                                <i class="fa fa-trash"></i> Hapus
-                            </a>
+                            </a>                                                
+                            <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                                <a href="<?php echo site_url('admin/activities/edit/' . $activity['activity_id']) ?>" class="btn btn-app">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <a href="#delModal" data-toggle="modal" class="btn btn-app">
+                                    <i class="fa fa-trash"></i> Hapus
+                                </a>
+                            <?php } ?>
                         </div>
                     </div>
                     <!-- /.box-body -->

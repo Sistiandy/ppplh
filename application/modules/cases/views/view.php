@@ -857,7 +857,7 @@
                                 </div>
                                 <?php echo form_close() ?>
                             <?php } ?>
-                            <?php if ($case['stage_id'] == STAGE_ANALIS AND $this->session->userdata('uroleid') == ROLE_ANALIS AND $case['case_evaluation4_status'] == 'Belum Taat' AND $case['case_evaluation5_note'] != NULL  AND $case['case_final_status'] == NULL) { ?>
+                            <?php if ($case['stage_id'] == STAGE_ANALIS AND $this->session->userdata('uroleid') == ROLE_ANALIS AND $case['case_evaluation4_status'] == 'Belum Taat' AND $case['case_evaluation5_note'] != NULL AND $case['case_final_status'] == NULL) { ?>
                                 <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTaat"><i class="fa fa-check"></i> TAAT</button>
                                 <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTidakTaat"><i class="fa fa-close"></i> TIDAK TAAT</button>
                             <?php } ?>
@@ -873,12 +873,14 @@
                             <a href="<?php echo site_url('admin/cases') ?>" class="btn btn-app">
                                 <i class="fa fa-arrow-circle-o-left"></i> Batal
                             </a>
-                            <a href="<?php echo site_url('admin/cases/edit/' . $case['case_id']) ?>" class="btn btn-app">
-                                <i class="fa fa-edit"></i> Edit
-                            </a>
-                            <a href="#delModal" data-toggle="modal" class="btn btn-app">
-                                <i class="fa fa-trash"></i> Hapus
-                            </a>
+                            <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>
+                                <a href="<?php echo site_url('admin/cases/edit/' . $case['case_id']) ?>" class="btn btn-app">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
+                                <a href="#delModal" data-toggle="modal" class="btn btn-app">
+                                    <i class="fa fa-trash"></i> Hapus
+                                </a>
+                            <?php } ?>
                         </div>
                     </div>
                     <!-- /.box-body -->
