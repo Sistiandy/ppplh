@@ -339,7 +339,7 @@
                                 }
                             }
                             ?>
-                            <?php if ($case['case_for_draft'] == NULL AND $case['stage_id'] == STAGE_STAFF AND $this->session->userdata('uroleid') == ROLE_STAFF AND $case['case_evaluation1_note'] == NULL) { ?>
+                            <?php if (count($casesViolationsVerify)> 0 AND $case['case_for_draft'] == NULL AND $case['stage_id'] == STAGE_STAFF AND $this->session->userdata('uroleid') == ROLE_STAFF AND $case['case_evaluation1_note'] == NULL) { ?>
                                 <div class="col-md-12">
                                     <?php echo form_open_multipart('admin/cases/first_verification/' . $case['case_id']) ?>
                                     <hr>
