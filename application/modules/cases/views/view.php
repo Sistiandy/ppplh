@@ -128,7 +128,47 @@
                                                                                 <p> --- Verifikasi lapangan terhadap pelaksanaan isi sanksi pertama:
                                                                             </div>
                                                                             <div class="col-md-2">
-                                                                                <p> {{ (item.verification_sanksi1 == true) ? 'Sudah' : 'Belum'}}
+                                                                                <p><label class="label label-success" ng-show="item.verification_sanksi1 == true">Sudah</label> <label class="label label-danger" ng-show="item.verification_sanksi1 == false">Belum</label></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row" ng-show="item.verification_sanksi2 != null">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-8">
+                                                                                <p> --- Verifikasi lapangan terhadap pelaksanaan isi sanksi kedua:
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <p><label class="label label-success" ng-show="item.verification_sanksi2 == true">Sudah</label> <label class="label label-danger" ng-show="item.verification_sanksi2 == false">Belum</label></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row" ng-show="item.verification_sanksi3 != null">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-8">
+                                                                                <p> --- Verifikasi lapangan terhadap pelaksanaan isi sanksi ketiga:
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <p><label class="label label-success" ng-show="item.verification_sanksi3 == true">Sudah</label> <label class="label label-danger" ng-show="item.verification_sanksi3 == false">Belum</label></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row" ng-show="item.verification_sanksi4 != null">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-8">
+                                                                                <p> --- Verifikasi lapangan terhadap pelaksanaan isi sanksi keempat:
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <p><label class="label label-success" ng-show="item.verification_sanksi4 == true">Sudah</label> <label class="label label-danger" ng-show="item.verification_sanksi4 == false">Belum</label></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row" ng-show="item.verification_sanksi5 != null">
+                                                                        <div class="col-md-12">
+                                                                            <div class="col-md-8">
+                                                                                <p> --- Verifikasi lapangan terhadap pelaksanaan isi sanksi kelima:
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <p><label class="label label-success" ng-show="item.verification_sanksi5 == true">Sudah</label> <label class="label label-danger" ng-show="item.verification_sanksi5 == false">Belum</label></p>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -182,7 +222,47 @@
                                                                             <p> --- Verifikasi lapangan terhadap pelaksanaan isi sanksi pertama:
                                                                         </div>
                                                                         <div class="col-md-2">
-                                                                            <p> {{ (item.verification_sanksi1 == true) ? 'Sudah' : 'Belum'}}
+                                                                            <p><label class="label label-success" ng-show="item.verification_sanksi1 == true">Sudah</label> <label class="label label-danger" ng-show="item.verification_sanksi1 == false">Belum</label></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row" ng-show="item.verification_sanksi2 != null">
+                                                                    <div class="col-md-12">
+                                                                        <div class="col-md-8">
+                                                                            <p> --- Verifikasi lapangan terhadap pelaksanaan isi sanksi kedua:
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <p><label class="label label-success" ng-show="item.verification_sanksi2 == true">Sudah</label> <label class="label label-danger" ng-show="item.verification_sanksi2 == false">Belum</label></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row" ng-show="item.verification_sanksi3 != null">
+                                                                    <div class="col-md-12">
+                                                                        <div class="col-md-8">
+                                                                            <p> --- Verifikasi lapangan terhadap pelaksanaan isi sanksi ketiga:
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <p><label class="label label-success" ng-show="item.verification_sanksi3 == true">Sudah</label> <label class="label label-danger" ng-show="item.verification_sanksi3 == false">Belum</label></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row" ng-show="item.verification_sanksi4 != null">
+                                                                    <div class="col-md-12">
+                                                                        <div class="col-md-8">
+                                                                            <p> --- Verifikasi lapangan terhadap pelaksanaan isi sanksi keempat:
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <p><label class="label label-success" ng-show="item.verification_sanksi4 == true">Sudah</label> <label class="label label-danger" ng-show="item.verification_sanksi4 == false">Belum</label></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row" ng-show="item.verification_sanksi5 != null">
+                                                                    <div class="col-md-12">
+                                                                        <div class="col-md-8">
+                                                                            <p> --- Verifikasi lapangan terhadap pelaksanaan isi sanksi kelima:
+                                                                        </div>
+                                                                        <div class="col-md-2">
+                                                                            <p><label class="label label-success" ng-show="item.verification_sanksi5 == true">Sudah</label> <label class="label label-danger" ng-show="item.verification_sanksi5 == false">Belum</label></p>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -313,11 +393,42 @@
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation2_note']; ?></td>
                                         </tr>
-    <!--                                        <tr>
+                                        <tr>
                                             <td>Status Sementara Evaluasi 2</td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation2_status']; ?></td>
-                                        </tr>-->
+                                        </tr>
+                                    <?php } ?>
+                                    <?php if ($case['case_evaluation3_note'] != NULL) { ?>
+                                        <tr>
+                                            <td>Catatan Evaluasi 3</td>
+                                            <td>:</td>
+                                            <td><?php echo $case['case_evaluation3_note']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status Sementara Evaluasi 3</td>
+                                            <td>:</td>
+                                            <td><?php echo $case['case_evaluation3_status']; ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                    <?php if ($case['case_evaluation4_note'] != NULL) { ?>
+                                        <tr>
+                                            <td>Catatan Evaluasi 4</td>
+                                            <td>:</td>
+                                            <td><?php echo $case['case_evaluation4_note']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status Sementara Evaluasi 4</td>
+                                            <td>:</td>
+                                            <td><?php echo $case['case_evaluation4_status']; ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                    <?php if ($case['case_evaluation5_note'] != NULL) { ?>
+                                        <tr>
+                                            <td>Catatan Evaluasi 5</td>
+                                            <td>:</td>
+                                            <td><?php echo $case['case_evaluation5_note']; ?></td>
+                                        </tr>
                                     <?php } ?>
                                 </tbody>
                             </table>
@@ -339,7 +450,7 @@
                                 }
                             }
                             ?>
-                            <?php if (count($casesViolationsVerify)> 0 AND $case['case_for_draft'] == NULL AND $case['stage_id'] == STAGE_STAFF AND $this->session->userdata('uroleid') == ROLE_STAFF AND $case['case_evaluation1_note'] == NULL) { ?>
+                            <?php if (count($casesViolationsVerify) > 0 AND $case['case_for_draft'] == NULL AND $case['stage_id'] == STAGE_STAFF AND $this->session->userdata('uroleid') == ROLE_STAFF AND $case['case_evaluation1_note'] == NULL) { ?>
                                 <div class="col-md-12">
                                     <?php echo form_open_multipart('admin/cases/first_verification/' . $case['case_id']) ?>
                                     <hr>
@@ -481,23 +592,34 @@
                                     </div>
                                     <?php
                                     $i = 1;
-                                    foreach ($casesViolations1False as $row):
-                                        ?>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <?php echo $i . '. ' . $row['violation_title'] ?>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="radio" style="margin-top: 0px">
-                                                    <input type="hidden" name="cases_has_violations_id[]" value="<?php echo $row['cases_has_violations_id'] ?>">
-                                                    <label><input required="" type="radio" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="1">SUDAH </label> <label> <input required="" type="radio" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="0">BELUM</label>
+                                    foreach ($casesViolations as $row):
+                                        if ($row['verification_sanksi1'] == 0 AND $row['verification_sanksi1'] != NULL) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <?php echo $i . '. ' . $row['violation_title'] ?>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <?php
-                                        $i++;
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="radio" style="margin-top: 0px">
+                                                        <input type="hidden" name="cases_has_violations_id[]" value="<?php echo $row['cases_has_violations_id'] ?>">
+                                                        <label><input required="" type="radio" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="1">SUDAH </label> <label> <input required="" type="radio" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="0">BELUM</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                            $i++;
+                                        } elseif ($row['verification_sanksi1'] == TRUE) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="hidden" name="cases_has_violations_id[]" value="<?php echo $row['cases_has_violations_id'] ?>">
+                                                    <input type="hidden" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="1">
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
                                     endforeach;
                                     ?>
                                     <br>
@@ -511,26 +633,231 @@
                             <?php } ?>
                             <?php if ($case['case_evaluation1_note'] != NULL AND $case['stage_id'] == STAGE_ANALIS AND $this->session->userdata('uroleid') == ROLE_ANALIS AND $case['case_evaluation2_note'] == NULL) { ?>
                                 <?php echo form_open('admin/cases/second_evaluation/' . $case['case_id']) ?>
-                                <div class="col-md-12">
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <label>Catatan Evaluasi Kedua:</label>
                                         <textarea required="" name="case_evaluation2_note" placeholder="Catatan Evaluasi Kedua" class="form-control"></textarea>
                                     </div>
                                 </div>
-                                <!--                                <div class="col-md-4">
-                                                                    <div class="form-group">
-                                                                        <label>Status:</label>
-                                                                        <div class="radio">
-                                                                            <label><input required="" type="radio" name="case_evaluation2_status" value="Taat">TAAT </label> <label> <input required="" type="radio" name="case_evaluation2_status" value="Belum Taat">BELUM TAAT</label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>-->
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Status:</label>
+                                        <div class="radio">
+                                            <label><input required="" type="radio" name="case_evaluation2_status" value="Taat">TAAT </label> <label> <input required="" type="radio" name="case_evaluation2_status" value="Belum Taat">BELUM TAAT</label>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="col-md-12">
                                     <input type="submit" class="btn btn-block btn-success btn-flat" value="Simpan">
                                 </div>
                                 <?php echo form_close() ?>
                             <?php } ?>
-                            <?php if ($case['case_evaluation1_note'] != NULL AND $case['stage_id'] == STAGE_ANALIS AND $this->session->userdata('uroleid') == ROLE_ANALIS AND $case['case_evaluation2_note'] != NULL AND $case['case_final_status'] == NULL) { ?>
+
+                            <?php if ($case['case_evaluation2_note'] != NULL AND $case['stage_id'] == STAGE_STAFF AND $this->session->userdata('uroleid') == ROLE_STAFF AND $case['case_evaluation3_note'] == NULL) { ?>
+                                <div class="col-md-12">
+                                    <?php echo form_open_multipart('admin/cases/third_verification/' . $case['case_id']) ?>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <b>------ VERIFIKASI LAPANGAN TERHADAP PELAKSANAAN ISI SANKSI KETIGA ------</b>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($casesViolations as $row):
+                                        if ($row['verification_sanksi2'] == 0 AND $row['verification_sanksi2'] != NULL) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <?php echo $i . '. ' . $row['violation_title'] ?>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="radio" style="margin-top: 0px">
+                                                        <input type="hidden" name="cases_has_violations_id[]" value="<?php echo $row['cases_has_violations_id'] ?>">
+                                                        <label><input required="" type="radio" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="1">SUDAH </label> <label> <input required="" type="radio" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="0">BELUM</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                            $i++;
+                                        } elseif ($row['verification_sanksi2'] == TRUE) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="hidden" name="cases_has_violations_id[]" value="<?php echo $row['cases_has_violations_id'] ?>">
+                                                    <input type="hidden" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="1">
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                    endforeach;
+                                    ?>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input type="submit" class="btn btn-success btn-flat btn-block" value="Simpan">
+                                        </div>
+                                    </div>
+                                    <?php echo form_close(); ?>
+                                </div>
+                            <?php } ?>
+                            <?php if ($case['case_evaluation2_note'] != NULL AND $case['stage_id'] == STAGE_ANALIS AND $this->session->userdata('uroleid') == ROLE_ANALIS AND $case['case_evaluation3_note'] == NULL) { ?>
+                                <?php echo form_open('admin/cases/third_evaluation/' . $case['case_id']) ?>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Catatan Evaluasi Ketiga:</label>
+                                        <textarea required="" name="case_evaluation3_note" placeholder="Catatan Evaluasi Ketiga" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Status:</label>
+                                        <div class="radio">
+                                            <label><input required="" type="radio" name="case_evaluation3_status" value="Taat">TAAT </label> <label> <input required="" type="radio" name="case_evaluation3_status" value="Belum Taat">BELUM TAAT</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="submit" class="btn btn-block btn-success btn-flat" value="Simpan">
+                                </div>
+                                <?php echo form_close() ?>
+                            <?php } ?>
+
+                            <?php if ($case['case_evaluation3_note'] != NULL AND $case['stage_id'] == STAGE_STAFF AND $this->session->userdata('uroleid') == ROLE_STAFF AND $case['case_evaluation4_note'] == NULL) { ?>
+                                <div class="col-md-12">
+                                    <?php echo form_open_multipart('admin/cases/fourth_verification/' . $case['case_id']) ?>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <b>------ VERIFIKASI LAPANGAN TERHADAP PELAKSANAAN ISI SANKSI KEEMPAT ------</b>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($casesViolations as $row):
+                                        if ($row['verification_sanksi3'] == 0 AND $row['verification_sanksi3'] != NULL) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <?php echo $i . '. ' . $row['violation_title'] ?>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="radio" style="margin-top: 0px">
+                                                        <input type="hidden" name="cases_has_violations_id[]" value="<?php echo $row['cases_has_violations_id'] ?>">
+                                                        <label><input required="" type="radio" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="1">SUDAH </label> <label> <input required="" type="radio" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="0">BELUM</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                            $i++;
+                                        } elseif ($row['verification_sanksi3'] == TRUE) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="hidden" name="cases_has_violations_id[]" value="<?php echo $row['cases_has_violations_id'] ?>">
+                                                    <input type="hidden" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="1">
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                    endforeach;
+                                    ?>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input type="submit" class="btn btn-success btn-flat btn-block" value="Simpan">
+                                        </div>
+                                    </div>
+                                    <?php echo form_close(); ?>
+                                </div>
+                            <?php } ?>
+                            <?php if ($case['case_evaluation3_note'] != NULL AND $case['stage_id'] == STAGE_ANALIS AND $this->session->userdata('uroleid') == ROLE_ANALIS AND $case['case_evaluation4_note'] == NULL) { ?>
+                                <?php echo form_open('admin/cases/fourth_evaluation/' . $case['case_id']) ?>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Catatan Evaluasi Keempat:</label>
+                                        <textarea required="" name="case_evaluation4_note" placeholder="Catatan Evaluasi Keempat" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Status:</label>
+                                        <div class="radio">
+                                            <label><input required="" type="radio" name="case_evaluation4_status" value="Taat">TAAT </label> <label> <input required="" type="radio" name="case_evaluation4_status" value="Belum Taat">BELUM TAAT</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="submit" class="btn btn-block btn-success btn-flat" value="Simpan">
+                                </div>
+                                <?php echo form_close() ?>
+                            <?php } ?>
+
+                            <?php if ($case['case_evaluation4_note'] != NULL AND $case['stage_id'] == STAGE_STAFF AND $this->session->userdata('uroleid') == ROLE_STAFF AND $case['case_evaluation5_note'] == NULL) { ?>
+                                <div class="col-md-12">
+                                    <?php echo form_open_multipart('admin/cases/fifth_verification/' . $case['case_id']) ?>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <b>------ VERIFIKASI LAPANGAN TERHADAP PELAKSANAAN ISI SANKSI KELIMA ------</b>
+                                        </div>
+                                    </div>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($casesViolations as $row):
+                                        if ($row['verification_sanksi4'] == 0 AND $row['verification_sanksi4'] != NULL) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <?php echo $i . '. ' . $row['violation_title'] ?>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="radio" style="margin-top: 0px">
+                                                        <input type="hidden" name="cases_has_violations_id[]" value="<?php echo $row['cases_has_violations_id'] ?>">
+                                                        <label><input required="" type="radio" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="1">SUDAH </label> <label> <input required="" type="radio" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="0">BELUM</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                            $i++;
+                                        } elseif ($row['verification_sanksi4'] == TRUE) {
+                                            ?>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="hidden" name="cases_has_violations_id[]" value="<?php echo $row['cases_has_violations_id'] ?>">
+                                                    <input type="hidden" name="verification_sanksi_<?php echo $row['cases_has_violations_id'] ?>" value="1">
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                    endforeach;
+                                    ?>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <input type="submit" class="btn btn-success btn-flat btn-block" value="Simpan">
+                                        </div>
+                                    </div>
+                                    <?php echo form_close(); ?>
+                                </div>
+                            <?php } ?>
+                            <?php if ($case['case_evaluation4_note'] != NULL AND $case['stage_id'] == STAGE_ANALIS AND $this->session->userdata('uroleid') == ROLE_ANALIS AND $case['case_evaluation5_note'] == NULL) { ?>
+                                <?php echo form_open('admin/cases/fifth_evaluation/' . $case['case_id']) ?>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Catatan Evaluasi Kelima:</label>
+                                        <textarea required="" name="case_evaluation5_note" placeholder="Catatan Evaluasi Kelima" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="submit" class="btn btn-block btn-success btn-flat" value="Simpan">
+                                </div>
+                                <?php echo form_close() ?>
+                            <?php } ?>
+                            <?php if ($case['stage_id'] == STAGE_ANALIS AND $this->session->userdata('uroleid') == ROLE_ANALIS AND $case['case_evaluation4_status'] == 'Belum Taat' AND $case['case_evaluation5_note'] != NULL  AND $case['case_final_status'] == NULL) { ?>
                                 <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTaat"><i class="fa fa-check"></i> TAAT</button>
                                 <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTidakTaat"><i class="fa fa-close"></i> TIDAK TAAT</button>
                             <?php } ?>
@@ -665,7 +992,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    
+
     <!--Modal taat -->
     <div class="modal fade" id="statusTaat">
         <div class="modal-dialog">
@@ -729,6 +1056,8 @@
 
             var url = BASEURL + 'api/getViolationsByCase/<?php echo $case['case_id'] ?>';
             $http.get(url).then(function (response) {
+                $scope.verifyTrue = 0;
+                $scope.verifyTrue1 = 0;
                 $scope.verifyTrue2 = 0;
                 $scope.violations = response.data;
                 angular.forEach($scope.violations, function (value) {

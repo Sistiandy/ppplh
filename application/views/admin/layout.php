@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>SI-PPPLH <?php echo isset($title) ? ' | ' . $title : null; ?></title>
+        <title>SI-SADLH <?php echo isset($title) ? ' | ' . $title : null; ?></title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" href="<?php echo media_url('ico/favicon.png'); ?>" type="image/x-icon">
@@ -50,7 +50,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b><i class="fa fa-envira"></i></b></span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>SI</b>-PPPLH</span>
+                    <span class="logo-lg"><b>SI</b>-SADLH</span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -103,7 +103,7 @@
                 <div class="pull-right hidden-xs">
                     <b>Version</b> 1.0.0
                 </div>
-                <strong>Copyright &copy; 2016 - Sistem Informasi Pelaporan Pelanggaran Pengelolaan Lingkungan Hidup.</strong> All rights
+                <strong>Copyright &copy; 2016 - Sistem Informasi Sanksi Administrasi Lingkungan Hidup.</strong> All rights
                 reserved.
             </footer>
 

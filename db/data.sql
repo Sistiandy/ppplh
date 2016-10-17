@@ -6,7 +6,8 @@
 INSERT INTO `user_roles` (`role_id`, `role_name`) VALUES
 (1, 'Admin'),
 (2, 'Staff'),
-(3, 'Analis');
+(3, 'Analis'),
+(4, 'Kabid');
 
 --
 -- Dumping data for table `user`
@@ -15,7 +16,8 @@ INSERT INTO `user_roles` (`role_id`, `role_name`) VALUES
 INSERT INTO `users` (`user_id`, `user_name`, `user_full_name`, `user_password`, `user_email`, `user_pob`, `user_dob`, `user_input_date`, `user_last_update`, `user_role_role_id`, `user_is_deleted`) VALUES
 (1, 'admin', 'Admin', 'f99aecef3d12e02dcbb6260bbdd35189c89e6e73', 'admin@example.com', 'Jakarta', '2015-07-30 04:32:54', '2015-07-30 04:32:54', '2015-07-30 04:32:54', 1, 0),
 (2, 'staff', 'Staff SUBBID GAKUM', 'f99aecef3d12e02dcbb6260bbdd35189c89e6e73', 'staff@example.com', 'Jakarta', '2015-07-30 04:32:54', '2015-07-30 04:32:54', '2015-07-30 04:32:54', 2, 0),
-(3, 'analis', 'SUBBID GAKUM', 'f99aecef3d12e02dcbb6260bbdd35189c89e6e73', 'analis@example.com', 'Jakarta', '2015-07-30 04:32:54', '2015-07-30 04:32:54', '2015-07-30 04:32:54', 3, 0);
+(3, 'analis', 'SUBBID GAKUM', 'f99aecef3d12e02dcbb6260bbdd35189c89e6e73', 'analis@example.com', 'Jakarta', '2015-07-30 04:32:54', '2015-07-30 04:32:54', '2015-07-30 04:32:54', 3, 0),
+(4, 'kabid', 'KABID', 'f99aecef3d12e02dcbb6260bbdd35189c89e6e73', 'analis@example.com', 'Jakarta', '2015-07-30 04:32:54', '2015-07-30 04:32:54', '2015-07-30 04:32:54', 4, 0);
 
 --
 -- Dumping data for table `channels`

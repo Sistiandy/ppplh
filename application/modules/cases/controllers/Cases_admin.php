@@ -252,9 +252,6 @@ class Cases_admin extends CI_Controller {
                 for ($i = 0; $i < $cpt; $i++) {
                     $param['cases_has_violations_id'] = $violationId[$i];
                     $param['verification_sanksi1'] = $_POST['verification_sanksi_' . $violationId[$i]];
-                    if ($_POST['verification_sanksi_' . $violationId[$i]] == TRUE) {
-                        $param['verification_sanksi2'] = TRUE;
-                    }
                     $this->Cases_model->addHasViolations($param);
                 }
             };
@@ -309,11 +306,11 @@ class Cases_admin extends CI_Controller {
     // Verification cases
     public function second_verification($id = NULL) {
         if ($_POST) {
-//            $this->Cases_model->add(
-//                    array(
-//                        'case_id' => $id,
-//                        'stage_id' => STAGE_ANALIS
-//            ));
+            $this->Cases_model->add(
+                    array(
+                        'case_id' => $id,
+                        'stage_id' => STAGE_ANALIS
+            ));
 
             if (isset($_POST['cases_has_violations_id'])) {
                 $violationId = $_POST['cases_has_violations_id'];
@@ -365,7 +362,204 @@ class Cases_admin extends CI_Controller {
                         'log_info' => 'ID:' . $id . ';'
                     )
             );
-            $this->session->set_flashdata('success', 'Evaluasi kedua berhasil');
+            $this->session->set_flashdata('success', 'Evaluasi Kedua berhasil');
+            redirect('admin/cases/view/' . $id);
+        } elseif (!$_POST) {
+            redirect('admin/cases/view/' . $id);
+        }
+    }
+
+    // Verification cases
+    public function third_verification($id = NULL) {
+        if ($_POST) {
+            $this->Cases_model->add(
+                    array(
+                        'case_id' => $id,
+                        'stage_id' => STAGE_ANALIS
+            ));
+
+            if (isset($_POST['cases_has_violations_id'])) {
+                $violationId = $_POST['cases_has_violations_id'];
+                $cpt = count($_POST['cases_has_violations_id']);
+                for ($i = 0; $i < $cpt; $i++) {
+                    $param['cases_has_violations_id'] = $violationId[$i];
+                    $param['verification_sanksi3'] = $_POST['verification_sanksi_' . $violationId[$i]];
+                    $this->Cases_model->addHasViolations($param);
+                }
+            };
+
+            // activity log
+            $this->load->model('logs/Logs_model');
+            $this->Logs_model->add(
+                    array(
+                        'log_date' => date('Y-m-d H:i:s'),
+                        'user_id' => $this->session->userdata('uid'),
+                        'log_module' => 'Cases',
+                        'log_action' => 'Verifikasi lapangan pelaksaan sanksi Ketiga',
+                        'log_info' => 'ID:' . $id . ';'
+                    )
+            );
+            $this->session->set_flashdata('success', 'Verifikasi lapangan pelaksaan sanksi Ketiga berhasil');
+            redirect('admin/cases/view/' . $id);
+        } elseif (!$_POST) {
+            redirect('admin/cases/view/' . $id);
+        }
+    }
+
+    // Verification cases
+    public function third_evaluation($id = NULL) {
+        if ($_POST) {
+            $this->Cases_model->add(
+                    array(
+                        'case_id' => $id,
+                        'case_evaluation3_note' => $this->input->post('case_evaluation3_note'),
+                        'case_evaluation3_status' => $this->input->post('case_evaluation3_status'),
+                        'stage_id' => STAGE_STAFF
+            ));
+
+            // activity log
+            $this->load->model('logs/Logs_model');
+            $this->Logs_model->add(
+                    array(
+                        'log_date' => date('Y-m-d H:i:s'),
+                        'user_id' => $this->session->userdata('uid'),
+                        'log_module' => 'Cases',
+                        'log_action' => 'Evaluasi Ketiga',
+                        'log_info' => 'ID:' . $id . ';'
+                    )
+            );
+            $this->session->set_flashdata('success', 'Evaluasi Ketiga berhasil');
+            redirect('admin/cases/view/' . $id);
+        } elseif (!$_POST) {
+            redirect('admin/cases/view/' . $id);
+        }
+    }
+
+    // Verification cases
+    public function fourth_verification($id = NULL) {
+        if ($_POST) {
+            $this->Cases_model->add(
+                    array(
+                        'case_id' => $id,
+                        'stage_id' => STAGE_ANALIS
+            ));
+
+            if (isset($_POST['cases_has_violations_id'])) {
+                $violationId = $_POST['cases_has_violations_id'];
+                $cpt = count($_POST['cases_has_violations_id']);
+                for ($i = 0; $i < $cpt; $i++) {
+                    $param['cases_has_violations_id'] = $violationId[$i];
+                    $param['verification_sanksi4'] = $_POST['verification_sanksi_' . $violationId[$i]];
+                    $this->Cases_model->addHasViolations($param);
+                }
+            };
+
+            // activity log
+            $this->load->model('logs/Logs_model');
+            $this->Logs_model->add(
+                    array(
+                        'log_date' => date('Y-m-d H:i:s'),
+                        'user_id' => $this->session->userdata('uid'),
+                        'log_module' => 'Cases',
+                        'log_action' => 'Verifikasi lapangan pelaksaan sanksi Keempat',
+                        'log_info' => 'ID:' . $id . ';'
+                    )
+            );
+            $this->session->set_flashdata('success', 'Verifikasi lapangan pelaksaan sanksi Keempat berhasil');
+            redirect('admin/cases/view/' . $id);
+        } elseif (!$_POST) {
+            redirect('admin/cases/view/' . $id);
+        }
+    }
+
+    // Verification cases
+    public function fourth_evaluation($id = NULL) {
+        if ($_POST) {
+            $this->Cases_model->add(
+                    array(
+                        'case_id' => $id,
+                        'case_evaluation4_note' => $this->input->post('case_evaluation4_note'),
+                        'case_evaluation4_status' => $this->input->post('case_evaluation4_status'),
+                        'stage_id' => STAGE_STAFF
+            ));
+
+            // activity log
+            $this->load->model('logs/Logs_model');
+            $this->Logs_model->add(
+                    array(
+                        'log_date' => date('Y-m-d H:i:s'),
+                        'user_id' => $this->session->userdata('uid'),
+                        'log_module' => 'Cases',
+                        'log_action' => 'Evaluasi Keempat',
+                        'log_info' => 'ID:' . $id . ';'
+                    )
+            );
+            $this->session->set_flashdata('success', 'Evaluasi Keempat berhasil');
+            redirect('admin/cases/view/' . $id);
+        } elseif (!$_POST) {
+            redirect('admin/cases/view/' . $id);
+        }
+    }
+
+    // Verification cases
+    public function fifth_verification($id = NULL) {
+        if ($_POST) {
+            $this->Cases_model->add(
+                    array(
+                        'case_id' => $id,
+                        'stage_id' => STAGE_ANALIS
+            ));
+
+            if (isset($_POST['cases_has_violations_id'])) {
+                $violationId = $_POST['cases_has_violations_id'];
+                $cpt = count($_POST['cases_has_violations_id']);
+                for ($i = 0; $i < $cpt; $i++) {
+                    $param['cases_has_violations_id'] = $violationId[$i];
+                    $param['verification_sanksi5'] = $_POST['verification_sanksi_' . $violationId[$i]];
+                    $this->Cases_model->addHasViolations($param);
+                }
+            };
+
+            // activity log
+            $this->load->model('logs/Logs_model');
+            $this->Logs_model->add(
+                    array(
+                        'log_date' => date('Y-m-d H:i:s'),
+                        'user_id' => $this->session->userdata('uid'),
+                        'log_module' => 'Cases',
+                        'log_action' => 'Verifikasi lapangan pelaksaan sanksi Kelima',
+                        'log_info' => 'ID:' . $id . ';'
+                    )
+            );
+            $this->session->set_flashdata('success', 'Verifikasi lapangan pelaksaan sanksi Kelima berhasil');
+            redirect('admin/cases/view/' . $id);
+        } elseif (!$_POST) {
+            redirect('admin/cases/view/' . $id);
+        }
+    }
+
+    // Verification cases
+    public function fifth_evaluation($id = NULL) {
+        if ($_POST) {
+            $this->Cases_model->add(
+                    array(
+                        'case_id' => $id,
+                        'case_evaluation5_note' => $this->input->post('case_evaluation5_note'),
+                        'case_evaluation5_status' => $this->input->post('case_evaluation5_status'),
+            ));
+
+            // activity log
+            $this->load->model('logs/Logs_model');
+            $this->Logs_model->add(
+                    array(
+                        'log_date' => date('Y-m-d H:i:s'),
+                        'user_id' => $this->session->userdata('uid'),
+                        'log_module' => 'Cases',
+                        'log_action' => 'Evaluasi Kelima',
+                        'log_info' => 'ID:' . $id . ';'
+                    )
+            );
+            $this->session->set_flashdata('success', 'Evaluasi Kelima berhasil');
             redirect('admin/cases/view/' . $id);
         } elseif (!$_POST) {
             redirect('admin/cases/view/' . $id);

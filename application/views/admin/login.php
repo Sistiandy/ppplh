@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>SI-PPPLH | Login</title>
+        <title>SI-SADLH | Login</title>
         <link rel="icon" href="<?php echo media_url('ico/favicon.png'); ?>" type="image/x-icon">
         <link rel="stylesheet" href="<?php echo media_url() ?>css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo media_url() ?>css/login.css">
@@ -38,7 +38,11 @@
                                 Sign in</button>
                         </form>
                     </div>
-                    <p class="text-center new-account text-blue">Please contact administrator to create an account </p>
+                </div>
+            </div><br>
+            <div class="row>">
+                <div class="col-md-12">
+                    <center><strong>Copyright &copy; 2016 - Sistem Informasi Sanksi Administrasi Lingkungan Hidup.</strong></center>
                 </div>
             </div>
         </div>

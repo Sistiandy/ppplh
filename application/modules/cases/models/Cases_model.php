@@ -38,9 +38,12 @@ class Cases_model extends CI_Model {
         }
         $this->db->select('cases.case_id, case_address, case_region,
             case_date, sanksi_type, stage_id, case_for_draft, case_is_signatured, sent_meeting_invitation,
-            berita_acara_pemanggilan, case_is_published, create_assignment_verification_letter,
-            sent_report, case_evaluation1_note, case_evaluation1_status, case_final_status,
-            case_evaluation2_note, case_evaluation2_status, case_note,
+            berita_acara_pemanggilan, case_is_published, create_assignment_verification_letter, case_final_status,
+            sent_report, case_evaluation1_note, case_evaluation1_status, case_note,
+            case_evaluation2_note, case_evaluation2_status,
+            case_evaluation3_note, case_evaluation3_status,
+            case_evaluation4_note, case_evaluation4_status,
+            case_evaluation5_note,
             case_input_date, case_last_update');
         $this->db->select('cases.users_user_id, users.user_full_name');
         $this->db->select('instances_instance_id, instances.instance_name');
@@ -150,6 +153,26 @@ class Cases_model extends CI_Model {
         if (isset($data['case_evaluation2_status'])) {
             $this->db->set('case_evaluation2_status', $data['case_evaluation2_status']);
         }
+
+        if (isset($data['case_evaluation3_note'])) {
+            $this->db->set('case_evaluation3_note', $data['case_evaluation3_note']);
+        }
+
+        if (isset($data['case_evaluation3_status'])) {
+            $this->db->set('case_evaluation3_status', $data['case_evaluation3_status']);
+        }
+
+        if (isset($data['case_evaluation4_note'])) {
+            $this->db->set('case_evaluation4_note', $data['case_evaluation4_note']);
+        }
+
+        if (isset($data['case_evaluation4_status'])) {
+            $this->db->set('case_evaluation4_status', $data['case_evaluation4_status']);
+        }
+
+        if (isset($data['case_evaluation5_note'])) {
+            $this->db->set('case_evaluation5_note', $data['case_evaluation5_note']);
+        }
         
         if (isset($data['case_input_date'])) {
             $this->db->set('case_input_date', $data['case_input_date']);
@@ -199,6 +222,15 @@ class Cases_model extends CI_Model {
         if (isset($params['verification_sanksi2'])) {
             $this->db->where('verification_sanksi2', $params['verification_sanksi2']);
         }
+        if (isset($params['verification_sanksi3'])) {
+            $this->db->where('verification_sanksi3', $params['verification_sanksi3']);
+        }
+        if (isset($params['verification_sanksi4'])) {
+            $this->db->where('verification_sanksi4', $params['verification_sanksi4']);
+        }
+        if (isset($params['verification_sanksi5'])) {
+            $this->db->where('verification_sanksi5', $params['verification_sanksi5']);
+        }
 
         if (isset($params['limit'])) {
             if (!isset($params['offset'])) {
@@ -214,7 +246,10 @@ class Cases_model extends CI_Model {
             $this->db->order_by('cases_has_violations_id', 'desc');
         }
         $this->db->select('cases_has_violations_id, cases_case_id, violations_violation_id,
-                verification_by_analis, sanksi_periode, verification_sanksi1, verification_sanksi2');
+                verification_by_analis, sanksi_periode,
+                verification_sanksi1, verification_sanksi2, verification_sanksi3, 
+                verification_sanksi4, verification_sanksi5, 
+                ');
         $this->db->select('violations.violation_title');
 
         $this->db->join('violations', 'violations.violation_id = cases_has_violations.violations_violation_id', 'left');
@@ -256,6 +291,18 @@ class Cases_model extends CI_Model {
 
         if (isset($data['verification_sanksi2'])) {
             $this->db->set('verification_sanksi2', $data['verification_sanksi2']);
+        }
+
+        if (isset($data['verification_sanksi3'])) {
+            $this->db->set('verification_sanksi3', $data['verification_sanksi3']);
+        }
+
+        if (isset($data['verification_sanksi4'])) {
+            $this->db->set('verification_sanksi4', $data['verification_sanksi4']);
+        }
+
+        if (isset($data['verification_sanksi5'])) {
+            $this->db->set('verification_sanksi5', $data['verification_sanksi5']);
         }
         
         if (isset($data['cases_has_violations_id'])) {
