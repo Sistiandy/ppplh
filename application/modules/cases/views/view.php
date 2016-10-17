@@ -76,7 +76,7 @@
                                                             <div class="col-md-12">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
-                                                                        <b>{{ $index + 1}}. {{ item.violation_title}}</b>
+                                                                        <b ng-class="item.verification_date != null ? getTempoClass(item.verification_date, item.sanksi_periode) : ''">{{ $index + 1}}. {{ item.violation_title}}</b>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="col-md-12">
@@ -91,12 +91,24 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </span>
-                                                                            <span ng-show="item.verification_by_analis == true">
+                                                                            <span ng-class="item.verification_date != null ? getTempoClass(item.verification_date, item.sanksi_periode) : ''" ng-show="item.verification_by_analis == true">
                                                                                 <div class="col-md-8">
                                                                                     <p> --- Verifikasi pelanggaran oleh analis </p>
                                                                                 </div>
                                                                                 <div class="col-md-3">
                                                                                     <p >Ya</p>
+                                                                                </div>
+                                                                                <div class="col-md-8">
+                                                                                    <p> --- Tanggal Verifikasi Oleh Analis </p>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <p >{{ item.verification_date | date : 'dd MMMM yyyy'}}</p>
+                                                                                </div>
+                                                                                <div class="col-md-8">
+                                                                                    <p> --- Tanggal Habis Waktu Tempo </p>
+                                                                                </div>
+                                                                                <div class="col-md-3">
+                                                                                    <p >{{ getDayTempo(item.verification_date, item.sanksi_periode) | date : 'dd MMMM yyyy'}}</p>
                                                                                 </div>
                                                                                 <div class="col-md-8">
                                                                                     <p>--- Waktu jatuh tempo penerapan sanksi (Hari Kalender): </p>
@@ -182,17 +194,29 @@
                                                             <div class="col-md-12">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
-                                                                        <b>{{ $index + 1}}. {{ item.violation_title}}</b>
+                                                                        <b ng-class="item.verification_date != null ? getTempoClass(item.verification_date, item.sanksi_periode) : ''">{{ $index + 1}}. {{ item.violation_title}}</b>
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
                                                                     <div class="col-md-12">
-                                                                        <span ng-show="item.verification_by_analis == true">
+                                                                        <span ng-class="item.verification_date != null ? getTempoClass(item.verification_date, item.sanksi_periode) : ''" ng-show="item.verification_by_analis == true">
                                                                             <div class="col-md-8">
                                                                                 <p> --- Verifikasi pelanggaran oleh analis </p>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <p >Ya</p>
+                                                                            </div>
+                                                                            <div class="col-md-8">
+                                                                                <p> --- Tanggal Verifikasi Oleh Analis </p>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <p >{{ item.verification_date | date : 'dd MMMM yyyy'}}</p>
+                                                                            </div>
+                                                                            <div class="col-md-8">
+                                                                                <p> --- Tanggal Habis Waktu Tempo </p>
+                                                                            </div>
+                                                                            <div class="col-md-3">
+                                                                                <p >{{ getDayTempo(item.verification_date, item.sanksi_periode) | date : 'dd MMMM yyyy'}}</p>
                                                                             </div>
                                                                             <div class="col-md-8">
                                                                                 <p>--- Waktu jatuh tempo penerapan sanksi (Hari Kalender): </p>
@@ -1049,79 +1073,94 @@
     var app = angular.module("app", []);
     var BASEURL = '<?php echo site_url(); ?>';
     app.controller('casesCtrl', function ($scope, $http) {
-        $scope.violations = [];
-        $scope.verifyTrue = 0;
-        $scope.verifyTrue1 = 0;
-        $scope.verifyTrue2 = 0;
-        $scope.animateviolations = false;
-        $scope.getViolations = function () {
+    $scope.violations = [];
+    $scope.verifyTrue = 0;
+    $scope.verifyTrue1 = 0;
+    $scope.verifyTrue2 = 0;
+    $scope.animateviolations = false;
+    $scope.getViolations = function () {
 
-            var url = BASEURL + 'api/getViolationsByCase/<?php echo $case['case_id'] ?>';
-            $http.get(url).then(function (response) {
-                $scope.verifyTrue = 0;
-                $scope.verifyTrue1 = 0;
-                $scope.verifyTrue2 = 0;
-                $scope.violations = response.data;
-                angular.forEach($scope.violations, function (value) {
-                    if (value.verification_by_analis == true) {
-                        $scope.verifyTrue++;
-                    }
-                    if (value.verification_sanksi1 == true) {
-                        $scope.verifyTrue1++;
-                    }
-                    if (value.verification_sanksi2 == true) {
-                        $scope.verifyTrue2++;
-                    }
-                });
-            })
-        };
-        $scope.verifyViolationYes = function (data) {
-            $scope.animateViolation = true;
-            var postData = $.param({
-                cases_has_violations_id: data,
-                desc: 'yes'
-            });
-            $.ajax({
-                method: "POST",
-                url: BASEURL + "admin/cases/verifyViolations",
-                data: postData,
-                success: function (response) {
-                    $scope.animateViolation = false;
-                    $scope.getViolations();
-                }
-            });
-        };
-        $scope.verifyViolationNo = function (data) {
-            $scope.animateViolation = true;
-            var postData = $.param({
-                cases_has_violations_id: data,
-                desc: 'no'
-            });
-            $.ajax({
-                method: "POST",
-                url: BASEURL + "admin/cases/verifyViolations",
-                data: postData,
-                success: function (response) {
-                    $scope.animateViolation = false;
-                    $scope.getViolations();
-                }
-            });
-        };
-        $scope.addSanksiPeriode = function (data) {
-            $scope.animateViolation = true;
-            var postData = $.param(data);
-            $.ajax({
-                method: "POST",
-                url: BASEURL + "admin/cases/addSanksiPeriode",
-                data: postData,
-                success: function (response) {
-                    $scope.animateViolation = false;
-                    $scope.getViolations();
-                }
-            });
-        };
-        angular.element(document).ready(function () {
+    var url = BASEURL + 'api/getViolationsByCase/<?php echo $case['case_id'] ?>';
+    $http.get(url).then(function (response) {
+    $scope.verifyTrue = 0;
+    $scope.verifyTrue1 = 0;
+    $scope.verifyTrue2 = 0;
+    $scope.violations = response.data;
+    angular.forEach($scope.violations, function (value) {
+    if (value.verification_by_analis == true) {
+    $scope.verifyTrue++;
+    }
+    if (value.verification_sanksi1 == true) {
+    $scope.verifyTrue1++;
+    }
+    if (value.verification_sanksi2 == true) {
+    $scope.verifyTrue2++;
+    }
+    });
+    })
+    };
+    $scope.verifyViolationYes = function (data) {
+    $scope.animateViolation = true;
+    var postData = $.param({
+    cases_has_violations_id: data,
+            desc: 'yes'
+    });
+    $.ajax({
+    method: "POST",
+            url: BASEURL + "admin/cases/verifyViolations",
+            data: postData,
+            success: function (response) {
+            $scope.animateViolation = false;
             $scope.getViolations();
-        });
+            }
+    });
+    };
+    $scope.verifyViolationNo = function (data) {
+    $scope.animateViolation = true;
+    var postData = $.param({
+    cases_has_violations_id: data,
+            desc: 'no'
+    });
+    $.ajax({
+    method: "POST",
+            url: BASEURL + "admin/cases/verifyViolations",
+            data: postData,
+            success: function (response) {
+            $scope.animateViolation = false;
+            $scope.getViolations();
+            }
+    });
+    };
+    $scope.getDayTempo = function (date, addDay) {
+
+    var mydate = new Date(date);
+    var newdate = new Date(mydate.setDate(mydate.getDate() + parseInt(addDay)));
+    return newdate;
+    };
+    $scope.getTempoClass = function (date, days) {
+    var now = new Date();
+    var tempoDate = $scope.getDayTempo(date, days);
+    if (now.getDate() >= tempoDate.getDate()) {
+    return 'text text-danger';
+    } else{
+    return '';
+    }
+    };
+    $scope.addSanksiPeriode = function (data) {
+    $scope.animateViolation = true;
+    var postData = $.param(data);
+    $.ajax({
+    method: "POST",
+            url: BASEURL + "admin/cases/addSanksiPeriode",
+            data: postData,
+            success: function (response) {
+            $scope.animateViolation = false;
+            $scope.getViolations();
+            }
+    });
+    };
+    angular.element(document).ready(function () {
+    $scope.getViolations();
+    });
     });
 </script>

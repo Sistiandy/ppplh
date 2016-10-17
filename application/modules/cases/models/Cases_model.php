@@ -246,7 +246,7 @@ class Cases_model extends CI_Model {
             $this->db->order_by('cases_has_violations_id', 'desc');
         }
         $this->db->select('cases_has_violations_id, cases_case_id, violations_violation_id,
-                verification_by_analis, sanksi_periode,
+                verification_by_analis, sanksi_periode, verification_date,
                 verification_sanksi1, verification_sanksi2, verification_sanksi3, 
                 verification_sanksi4, verification_sanksi5, 
                 ');
@@ -283,6 +283,10 @@ class Cases_model extends CI_Model {
 
         if (isset($data['sanksi_periode'])) {
             $this->db->set('sanksi_periode', $data['sanksi_periode']);
+        }
+
+        if (isset($data['verification_date'])) {
+            $this->db->set('verification_date', $data['verification_date']);
         }
 
         if (isset($data['verification_sanksi1'])) {

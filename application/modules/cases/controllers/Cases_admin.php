@@ -95,7 +95,7 @@ class Cases_admin extends CI_Controller {
                 echo $status;
             } else {
                 $this->session->set_flashdata('success', $data['operation'] . ' Kasus Pelanggaran Berhasil');
-                redirect('admin/cases');
+                redirect('admin/cases/view/'.$status);
             }
         } else {
             if ($this->input->post('case_id')) {
@@ -572,7 +572,7 @@ class Cases_admin extends CI_Controller {
         $desc = $this->input->post('desc');
         if ($this->input->is_ajax_request()) {
             if ($desc == 'yes') {
-                $this->Cases_model->addHasViolations(array('cases_has_violations_id' => $id, 'verification_by_analis' => TRUE));
+                $this->Cases_model->addHasViolations(array('cases_has_violations_id' => $id, 'verification_by_analis' => TRUE, 'verification_date' => date('Y-m-d')));
             } else {
                 $this->Cases_model->addHasViolations(array('cases_has_violations_id' => $id, 'verification_by_analis' => FALSE));
             }
