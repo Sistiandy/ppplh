@@ -235,21 +235,18 @@ class Cases_admin extends CI_Controller {
             $this->Cases_model->add(
                     array(
                         'case_id' => $id,
-                        'case_final_status' => $this->input->post('case_final_status')
+                        'case_evaluation1_note' => $this->input->post('case_evaluation1_note'),
+                        'case_evaluation1_status' => $this->input->post('case_evaluation1_status'),
+                        'case_evaluation2_note' => $this->input->post('case_evaluation2_note'),
+                        'case_evaluation2_status' => $this->input->post('case_evaluation2_status'),
+                        'case_evaluation3_note' => $this->input->post('case_evaluation3_note'),
+                        'case_evaluation3_status' => $this->input->post('case_evaluation3_status'),
+                        'case_evaluation4_note' => $this->input->post('case_evaluation4_note'),
+                        'case_evaluation4_status' => $this->input->post('case_evaluation4_status'),
+                        'case_evaluation5_note' => $this->input->post('case_evaluation5_note')
             ));
 
-            // activity log
-            $this->load->model('logs/Logs_model');
-            $this->Logs_model->add(
-                    array(
-                        'log_date' => date('Y-m-d H:i:s'),
-                        'user_id' => $this->session->userdata('uid'),
-                        'log_module' => 'Cases',
-                        'log_action' => 'Menentukan Status Kasus',
-                        'log_info' => 'ID:' . $id . ';Status Akhir:' . $this->input->post('case_final_status')
-                    )
-            );
-            $this->session->set_flashdata('success', 'Status Kasus Pelanggaran berhasil');
+            $this->session->set_flashdata('success', 'Edit Pelanggaran berhasil');
             redirect('admin/cases/view/' . $id);
         } elseif (!$_POST) {
             redirect('admin/cases/view/' . $id);

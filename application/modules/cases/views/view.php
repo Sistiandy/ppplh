@@ -401,55 +401,55 @@
                                     <?php } ?>
                                     <?php if ($case['case_evaluation1_note'] != NULL) { ?>
                                         <tr>
-                                            <td>Catatan Evaluasi 1 - <a data-toggle="modal" href="#cevaluation1">Edit</a></td>
+                                            <td>Catatan Evaluasi 1 <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?> - <a data-toggle="modal" href="#cevaluation1">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation1_note']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Status Sementara Evaluasi 1 - <a data-toggle="modal" href="#sevaluation1">Edit</a></td>
+                                            <td>Status Sementara Evaluasi <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?> 1 - <a data-toggle="modal" href="#sevaluation1">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation1_status']; ?></td>
                                         </tr>
                                     <?php } ?>
                                     <?php if ($case['case_evaluation2_note'] != NULL) { ?>
                                         <tr>
-                                            <td>Catatan Evaluasi 2 - <a data-toggle="modal" href="#cevaluation2">Edit</a></td>
+                                            <td>Catatan Evaluasi 2 <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?> - <a data-toggle="modal" href="#cevaluation2">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation2_note']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Status Sementara Evaluasi 2 - <a data-toggle="modal" href="#sevaluation2">Edit</a></td>
+                                            <td>Status Sementara Evaluasi <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?> 2 - <a data-toggle="modal" href="#sevaluation2">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation2_status']; ?></td>
                                         </tr>
                                     <?php } ?>
                                     <?php if ($case['case_evaluation3_note'] != NULL) { ?>
                                         <tr>
-                                            <td>Catatan Evaluasi 3 - <a data-toggle="modal" href="#cevaluation3">Edit</a></td>
+                                            <td>Catatan Evaluasi 3 <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?> - <a data-toggle="modal" href="#cevaluation3">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation3_note']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Status Sementara Evaluasi 3 - <a data-toggle="modal" href="#sevaluation3">Edit</a></td>
+                                            <td>Status Sementara Evaluasi 3 <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?> - <a data-toggle="modal" href="#sevaluation3">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation3_status']; ?></td>
                                         </tr>
                                     <?php } ?>
                                     <?php if ($case['case_evaluation4_note'] != NULL) { ?>
                                         <tr>
-                                            <td>Catatan Evaluasi 4 - <a data-toggle="modal" href="#cevaluation4">Edit</a></td>
+                                            <td>Catatan Evaluasi 4 <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?> - <a data-toggle="modal" href="#cevaluation4">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation4_note']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Status Sementara Evaluasi 4 - <a data-toggle="modal" href="#sevaluation4">Edit</a></td>
+                                            <td>Status Sementara Evaluasi 4 <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?> - <a data-toggle="modal" href="#sevaluation4">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation4_status']; ?></td>
                                         </tr>
                                     <?php } ?>
                                     <?php if ($case['case_evaluation5_note'] != NULL) { ?>
                                         <tr>
-                                            <td>Catatan Evaluasi 5 - <a data-toggle="modal" href="#cevaluation5">Edit</a></td>
+                                            <td>Catatan Evaluasi 5 <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?>- <a data-toggle="modal" href="#cevaluation5">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation5_note']; ?></td>
                                         </tr>
@@ -913,11 +913,13 @@
                             <?php } ?>
                             <?php if ($case['case_final_status'] == 'Taat') { ?>
                                 <div class="col-md-12">
+                                    <br>
                                     <div class="alert alert-success"><center><b>Kasus ini dinyatakan <?php echo $case['case_final_status'] ?></b></center></div>
                                 </div>
                             <?php } ?>
                             <?php if ($case['case_final_status'] == 'Tidak Taat') { ?>
                                 <div class="col-md-12">
+                                    <br>
                                     <div class="alert alert-danger"><center><b>Kasus ini dinyatakan <?php echo $case['case_final_status'] ?></b></center></div>
                                 </div>
                             <?php } ?>
@@ -1002,7 +1004,7 @@
     <div class="modal fade" id="cevaluation1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <?php echo form_open('admin/cases/disposisi/' . $case['case_id']); ?>
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
@@ -1027,7 +1029,7 @@
     <div class="modal fade" id="sevaluation1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <?php echo form_open('admin/cases/disposisi/' . $case['case_id']); ?>
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
@@ -1038,6 +1040,187 @@
                     <div class="radio">
                         <label><input required="" type="radio" name="case_evaluation1_status" <?php echo $case['case_evaluation1_status'] == 'Taat'? 'checked': '' ?> value="Taat">TAAT </label> <label> <input <?php echo $case['case_evaluation1_status'] == 'Belum Taat'? 'checked': '' ?> type="radio" name="case_evaluation1_status" value="Belum Taat">BELUM TAAT</label>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="cevaluation2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Catatan:</label>
+                    <textarea required="" name="case_evaluation2_note" class="form-control"><?php echo $case['case_evaluation2_note'] ?></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="sevaluation2">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Status:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="case_evaluation2_status" <?php echo $case['case_evaluation2_status'] == 'Taat'? 'checked': '' ?> value="Taat">TAAT </label> <label> <input <?php echo $case['case_evaluation2_status'] == 'Belum Taat'? 'checked': '' ?> type="radio" name="case_evaluation2_status" value="Belum Taat">BELUM TAAT</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="cevaluation3">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Catatan:</label>
+                    <textarea required="" name="case_evaluation3_note" class="form-control"><?php echo $case['case_evaluation3_note'] ?></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="sevaluation3">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Status:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="case_evaluation3_status" <?php echo $case['case_evaluation3_status'] == 'Taat'? 'checked': '' ?> value="Taat">TAAT </label> <label> <input <?php echo $case['case_evaluation3_status'] == 'Belum Taat'? 'checked': '' ?> type="radio" name="case_evaluation3_status" value="Belum Taat">BELUM TAAT</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="cevaluation4">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Catatan:</label>
+                    <textarea required="" name="case_evaluation4_note" class="form-control"><?php echo $case['case_evaluation4_note'] ?></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="sevaluation4">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Status:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="case_evaluation4_status" <?php echo $case['case_evaluation4_status'] == 'Taat'? 'checked': '' ?> value="Taat">TAAT </label> <label> <input <?php echo $case['case_evaluation4_status'] == 'Belum Taat'? 'checked': '' ?> type="radio" name="case_evaluation4_status" value="Belum Taat">BELUM TAAT</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="cevaluation5">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Catatan:</label>
+                    <textarea required="" name="case_evaluation5_note" class="form-control"><?php echo $case['case_evaluation5_note'] ?></textarea>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
