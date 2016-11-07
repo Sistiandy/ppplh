@@ -208,7 +208,33 @@ class Cases_admin extends CI_Controller {
             $this->Cases_model->add(
                     array(
                         'case_id' => $id,
-                        'stage_id' => STAGE_STAFF,
+                        'case_final_status' => $this->input->post('case_final_status')
+            ));
+
+            // activity log
+            $this->load->model('logs/Logs_model');
+            $this->Logs_model->add(
+                    array(
+                        'log_date' => date('Y-m-d H:i:s'),
+                        'user_id' => $this->session->userdata('uid'),
+                        'log_module' => 'Cases',
+                        'log_action' => 'Menentukan Status Kasus',
+                        'log_info' => 'ID:' . $id . ';Status Akhir:' . $this->input->post('case_final_status')
+                    )
+            );
+            $this->session->set_flashdata('success', 'Status Kasus Pelanggaran berhasil');
+            redirect('admin/cases/view/' . $id);
+        } elseif (!$_POST) {
+            redirect('admin/cases/view/' . $id);
+        }
+    }
+    
+    // Evaluation cases
+    public function evaluation($id = NULL) {
+        if ($_POST) {
+            $this->Cases_model->add(
+                    array(
+                        'case_id' => $id,
                         'case_final_status' => $this->input->post('case_final_status')
             ));
 

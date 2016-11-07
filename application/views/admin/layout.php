@@ -30,6 +30,14 @@
         <!-- Select2 multi select -->
         <link rel="stylesheet" href="<?php echo media_url() ?>/css/select2.min.css">
 
+        <style>
+            .tr_danger{
+                background-color: #F1A9A0;
+            }
+            .tr_success{
+                background-color: #A2DED0;
+            }
+        </style>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -131,10 +139,10 @@
         <script src="<?php echo media_url() ?>/js/dataTables.bootstrap.min.js"></script>
 
         <script type="text/javascript">
-                    $(document).ready(function () {
-                        $(".autocomplete").select2();
-                        $(".textarea").wysihtml5();
-                    });
+            $(document).ready(function () {
+                $(".autocomplete").select2();
+                $(".textarea").wysihtml5();
+            });
         </script>
 
 
@@ -142,6 +150,7 @@
             //Initiation dataTable
             $(function () {
                 $('.table-init').DataTable({
+                    "scrollX": true,
                     "aaSorting": [],
                     "oLanguage": {
                         "sSearch": "Pencarian :"

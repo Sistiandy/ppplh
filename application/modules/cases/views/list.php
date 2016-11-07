@@ -19,7 +19,7 @@
                 <div class="box box-primary">
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table class="table table-init table-bordered table-striped">
+                        <table class="table table-init table-bordered">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -30,6 +30,11 @@
                                     <th>Pelimpahan</th>
                                     <th>Posisi</th>
                                     <th>Tanggal</th>
+                                    <th>Hasil Evaluasi I</th>
+                                    <th>Hasil Evaluasi II</th>
+                                    <th>Hasil Evaluasi III</th>
+                                    <th>Hasil Evaluasi IV</th>
+                                    <th>Hasil Evaluasi Akhir</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -39,7 +44,13 @@
                                     $i = 1;
                                     foreach ($cases as $row):
                                         ?>
-                                        <tr>
+                                <tr class="<?php if($row['case_final_status']=='Taat'){
+                                                echo 'tr_success';
+                                            }elseif($row['case_final_status']=='Tidak Taat'){
+                                                echo 'tr_danger';
+                                            }else{
+                                                echo '';
+                                            } ?>">
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $row['instance_name']; ?></td>
                                             <td><?php echo $row['activity_title']; ?></td>
@@ -48,6 +59,41 @@
                                             <td><?php echo $row['channel_name']; ?></td>
                                             <td><?php echo ($row['stage_id'] == STAGE_STAFF) ? 'Staff' : 'Analis' ?></td>
                                             <td><?php echo pretty_date($row['case_date'], 'l, d F Y', FALSE); ?></td>
+                                            <td><?php if($row['case_evaluation1_status']=='Taat'){
+                                                echo '<span class="text text-success">Taat</span>';
+                                            }elseif($row['case_evaluation1_status']=='Belum Taat'){
+                                                echo '<span class="text text-danger">Belum Taat</span>';
+                                            }else{
+                                                echo '-';
+                                            }; ?></td>
+                                            <td><?php if($row['case_evaluation2_status']=='Taat'){
+                                                echo '<span class="text text-success">Taat</span>';
+                                            }elseif($row['case_evaluation2_status']=='Belum Taat'){
+                                                echo '<span class="text text-danger">Belum Taat</span>';
+                                            }else{
+                                                echo '-';
+                                            }; ?></td>
+                                            <td><?php if($row['case_evaluation3_status']=='Taat'){
+                                                echo '<span class="text text-success">Taat</span>';
+                                            }elseif($row['case_evaluation3_status']=='Belum Taat'){
+                                                echo '<span class="text text-danger">Belum Taat</span>';
+                                            }else{
+                                                echo '-';
+                                            }; ?></td>
+                                            <td><?php if($row['case_evaluation4_status']=='Taat'){
+                                                echo '<span class="text text-success">Taat</span>';
+                                            }elseif($row['case_evaluation4_status']=='Belum Taat'){
+                                                echo '<span class="text text-danger">Belum Taat</span>';
+                                            }else{
+                                                echo '-';
+                                            }; ?></td>
+                                            <td><?php if($row['case_final_status']=='Taat'){
+                                                echo '<span class="text text-success">Taat</span>';
+                                            }elseif($row['case_final_status']=='Tidak Taat'){
+                                                echo '<span class="text text-danger">Dibekukan</span>';
+                                            }else{
+                                                echo '-';
+                                            }; ?></td>
                                             <td>
                                                 <a href="<?php echo site_url('admin/cases/view/' . $row['case_id']) ?>" data-toggle="tooltip" title="Lihat" class="text-warning"><span class="fa fa-eye"></span></a> &nbsp;
                                                 <?php if ($this->session->userdata('uroleid') == ROLE_STAFF) { ?>

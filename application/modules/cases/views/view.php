@@ -401,55 +401,55 @@
                                     <?php } ?>
                                     <?php if ($case['case_evaluation1_note'] != NULL) { ?>
                                         <tr>
-                                            <td>Catatan Evaluasi 1</td>
+                                            <td>Catatan Evaluasi 1 - <a data-toggle="modal" href="#cevaluation1">Edit</a></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation1_note']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Status Sementara Evaluasi 1</td>
+                                            <td>Status Sementara Evaluasi 1 - <a data-toggle="modal" href="#sevaluation1">Edit</a></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation1_status']; ?></td>
                                         </tr>
                                     <?php } ?>
                                     <?php if ($case['case_evaluation2_note'] != NULL) { ?>
                                         <tr>
-                                            <td>Catatan Evaluasi 2</td>
+                                            <td>Catatan Evaluasi 2 - <a data-toggle="modal" href="#cevaluation2">Edit</a></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation2_note']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Status Sementara Evaluasi 2</td>
+                                            <td>Status Sementara Evaluasi 2 - <a data-toggle="modal" href="#sevaluation2">Edit</a></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation2_status']; ?></td>
                                         </tr>
                                     <?php } ?>
                                     <?php if ($case['case_evaluation3_note'] != NULL) { ?>
                                         <tr>
-                                            <td>Catatan Evaluasi 3</td>
+                                            <td>Catatan Evaluasi 3 - <a data-toggle="modal" href="#cevaluation3">Edit</a></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation3_note']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Status Sementara Evaluasi 3</td>
+                                            <td>Status Sementara Evaluasi 3 - <a data-toggle="modal" href="#sevaluation3">Edit</a></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation3_status']; ?></td>
                                         </tr>
                                     <?php } ?>
                                     <?php if ($case['case_evaluation4_note'] != NULL) { ?>
                                         <tr>
-                                            <td>Catatan Evaluasi 4</td>
+                                            <td>Catatan Evaluasi 4 - <a data-toggle="modal" href="#cevaluation4">Edit</a></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation4_note']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Status Sementara Evaluasi 4</td>
+                                            <td>Status Sementara Evaluasi 4 - <a data-toggle="modal" href="#sevaluation4">Edit</a></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation4_status']; ?></td>
                                         </tr>
                                     <?php } ?>
                                     <?php if ($case['case_evaluation5_note'] != NULL) { ?>
                                         <tr>
-                                            <td>Catatan Evaluasi 5</td>
+                                            <td>Catatan Evaluasi 5 - <a data-toggle="modal" href="#cevaluation5">Edit</a></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation5_note']; ?></td>
                                         </tr>
@@ -593,7 +593,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Status:</label>
+                                        <label>Status Evaluasi Pertama:</label>
                                         <div class="radio">
                                             <label><input required="" type="radio" name="case_evaluation1_status" value="Taat">TAAT </label> <label> <input required="" type="radio" name="case_evaluation1_status" value="Belum Taat">BELUM TAAT</label>
                                         </div>
@@ -601,6 +601,12 @@
                                 </div>
                                 <div class="col-md-12">
                                     <input type="submit" class="btn btn-block btn-success btn-flat" value="Simpan">
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <label>Status Akhir:</label>
+                                    <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTaat"><i class="fa fa-check"></i> TAAT</button>
+                                    <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTidakTaat"><i class="fa fa-close"></i> TIDAK TAAT</button>
                                 </div>
                                 <?php echo form_close() ?>
                             <?php } ?>
@@ -665,7 +671,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Status:</label>
+                                        <label>Status Evaluasi Kedua:</label>
                                         <div class="radio">
                                             <label><input required="" type="radio" name="case_evaluation2_status" value="Taat">TAAT </label> <label> <input required="" type="radio" name="case_evaluation2_status" value="Belum Taat">BELUM TAAT</label>
                                         </div>
@@ -673,6 +679,12 @@
                                 </div>
                                 <div class="col-md-12">
                                     <input type="submit" class="btn btn-block btn-success btn-flat" value="Simpan">
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <label>Status Akhir:</label>
+                                    <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTaat"><i class="fa fa-check"></i> TAAT</button>
+                                    <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTidakTaat"><i class="fa fa-close"></i> TIDAK TAAT</button>
                                 </div>
                                 <?php echo form_close() ?>
                             <?php } ?>
@@ -736,7 +748,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Status:</label>
+                                        <label>Status Evaluasi Ketiga:</label>
                                         <div class="radio">
                                             <label><input required="" type="radio" name="case_evaluation3_status" value="Taat">TAAT </label> <label> <input required="" type="radio" name="case_evaluation3_status" value="Belum Taat">BELUM TAAT</label>
                                         </div>
@@ -744,6 +756,12 @@
                                 </div>
                                 <div class="col-md-12">
                                     <input type="submit" class="btn btn-block btn-success btn-flat" value="Simpan">
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <label>Status Akhir:</label>
+                                    <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTaat"><i class="fa fa-check"></i> TAAT</button>
+                                    <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTidakTaat"><i class="fa fa-close"></i> TIDAK TAAT</button>
                                 </div>
                                 <?php echo form_close() ?>
                             <?php } ?>
@@ -807,7 +825,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>Status:</label>
+                                        <label>Status Evaluasi Keempat:</label>
                                         <div class="radio">
                                             <label><input required="" type="radio" name="case_evaluation4_status" value="Taat">TAAT </label> <label> <input required="" type="radio" name="case_evaluation4_status" value="Belum Taat">BELUM TAAT</label>
                                         </div>
@@ -815,6 +833,12 @@
                                 </div>
                                 <div class="col-md-12">
                                     <input type="submit" class="btn btn-block btn-success btn-flat" value="Simpan">
+                                </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <label>Status Akhir:</label>
+                                    <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTaat"><i class="fa fa-check"></i> TAAT</button>
+                                    <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTidakTaat"><i class="fa fa-close"></i> TIDAK TAAT</button>
                                 </div>
                                 <?php echo form_close() ?>
                             <?php } ?>
@@ -879,17 +903,23 @@
                                 <div class="col-md-12">
                                     <input type="submit" class="btn btn-block btn-success btn-flat" value="Simpan">
                                 </div>
+                                <div class="col-md-12">
+                                    <br>
+                                    <label>Status Akhir:</label>
+                                    <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTaat"><i class="fa fa-check"></i> TAAT</button>
+                                    <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTidakTaat"><i class="fa fa-close"></i> TIDAK TAAT</button>
+                                </div>
                                 <?php echo form_close() ?>
                             <?php } ?>
-                            <?php if ($case['stage_id'] == STAGE_ANALIS AND $this->session->userdata('uroleid') == ROLE_ANALIS AND $case['case_evaluation4_status'] == 'Belum Taat' AND $case['case_evaluation5_note'] != NULL AND $case['case_final_status'] == NULL) { ?>
-                                <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTaat"><i class="fa fa-check"></i> TAAT</button>
-                                <button type="button" class="btn btn-lg btn-block btn-warning" data-toggle="modal" data-target="#statusTidakTaat"><i class="fa fa-close"></i> TIDAK TAAT</button>
-                            <?php } ?>
                             <?php if ($case['case_final_status'] == 'Taat') { ?>
-                                <div class="alert alert-success"><center><b>Kasus ini dinyatakan <?php echo $case['case_final_status'] ?></b></center></div>
+                                <div class="col-md-12">
+                                    <div class="alert alert-success"><center><b>Kasus ini dinyatakan <?php echo $case['case_final_status'] ?></b></center></div>
+                                </div>
                             <?php } ?>
                             <?php if ($case['case_final_status'] == 'Tidak Taat') { ?>
-                                <div class="alert alert-danger"><center><b>Kasus ini dinyatakan <?php echo $case['case_final_status'] ?></b></center></div>
+                                <div class="col-md-12">
+                                    <div class="alert alert-danger"><center><b>Kasus ini dinyatakan <?php echo $case['case_final_status'] ?></b></center></div>
+                                </div>
                             <?php } ?>
                         </div>
 
@@ -964,6 +994,58 @@
                     <?php echo form_close() ?>
                 </div>
             </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="cevaluation1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/disposisi/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Catatan:</label>
+                    <textarea required="" name="case_evaluation1_note" class="form-control"><?php echo $case['case_evaluation1_note'] ?></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="sevaluation1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/disposisi/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Status:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="case_evaluation1_status" <?php echo $case['case_evaluation1_status'] == 'Taat'? 'checked': '' ?> value="Taat">TAAT </label> <label> <input <?php echo $case['case_evaluation1_status'] == 'Belum Taat'? 'checked': '' ?> type="radio" name="case_evaluation1_status" value="Belum Taat">BELUM TAAT</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
