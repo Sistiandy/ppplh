@@ -243,7 +243,14 @@ class Cases_admin extends CI_Controller {
                         'case_evaluation3_status' => $this->input->post('case_evaluation3_status'),
                         'case_evaluation4_note' => $this->input->post('case_evaluation4_note'),
                         'case_evaluation4_status' => $this->input->post('case_evaluation4_status'),
-                        'case_evaluation5_note' => $this->input->post('case_evaluation5_note')
+                        'case_evaluation5_note' => $this->input->post('case_evaluation5_note'),
+                        'case_for_draft' => $this->input->post('case_for_draft'),
+                        'case_is_signatured' => $this->input->post('case_is_signatured'),
+                        'sent_meeting_invitation' => $this->input->post('sent_meeting_invitation'),
+                        'berita_acara_pemanggilan' => $this->input->post('berita_acara_pemanggilan'),
+                        'case_is_published' => $this->input->post('case_is_published'),
+                        'create_assignment_verification_letter' => $this->input->post('create_assignment_verification_letter'),
+                        'sent_report' => $this->input->post('sent_report'),
             ));
 
             $this->session->set_flashdata('success', 'Edit Pelanggaran berhasil');

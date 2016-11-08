@@ -364,37 +364,37 @@
                                     </tr>
                                     <?php if ($case['case_for_draft'] != NULL) { ?>
                                         <tr>
-                                            <td>Buat Draft UDM Dan Sanksi ADM</td>
+                                            <td>Buat Draft UDM Dan Sanksi ADM <?php if($this->session->userdata('uroleid') == ROLE_STAFF) { ?> - <a data-toggle="modal" href="#case_for_draft">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo ($case['case_for_draft'] == TRUE) ? 'Ya' : 'Tidak'; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Tanda Tangan</td>
+                                            <td>Tanda Tangan <?php if($this->session->userdata('uroleid') == ROLE_STAFF) { ?> - <a data-toggle="modal" href="#case_is_signatured">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo ($case['case_is_signatured'] == TRUE) ? 'Ya' : 'Tidak'; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Kirim undangan rapat pemberian sanksi</td>
+                                            <td>Kirim undangan rapat pemberian sanksi <?php if($this->session->userdata('uroleid') == ROLE_STAFF) { ?> - <a data-toggle="modal" href="#sent_meeting_invitation">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo ($case['sent_meeting_invitation'] == TRUE) ? 'Sudah' : 'Belum'; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Berita acara pemanggilan</td>
+                                            <td>Berita acara pemanggilan <?php if($this->session->userdata('uroleid') == ROLE_STAFF) { ?> - <a data-toggle="modal" href="#berita_acara_pemanggilan">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo ($case['berita_acara_pemanggilan'] == TRUE) ? 'Sudah' : 'Belum'; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Publikasi media Jakarta</td>
+                                            <td>Publikasi media Jakarta <?php if($this->session->userdata('uroleid') == ROLE_STAFF) { ?> - <a data-toggle="modal" href="#case_is_published">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo ($case['case_is_published'] == TRUE) ? 'Sudah' : 'Belum'; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Buat surat tugas verifikasi lapangan</td>
+                                            <td>Buat surat tugas verifikasi lapangan <?php if($this->session->userdata('uroleid') == ROLE_STAFF) { ?> - <a data-toggle="modal" href="#create_assignment_verification_letter">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo ($case['create_assignment_verification_letter'] == TRUE) ? 'Sudah' : 'Belum'; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Kirim laporan oleh penanggung jawab perusahaan</td>
+                                            <td>Kirim laporan oleh penanggung jawab perusahaan <?php if($this->session->userdata('uroleid') == ROLE_STAFF) { ?> - <a data-toggle="modal" href="#sent_report">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo ($case['sent_report'] == TRUE) ? 'Sudah' : 'Belum'; ?></td>
                                         </tr>
@@ -406,7 +406,7 @@
                                             <td><?php echo $case['case_evaluation1_note']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Status Sementara Evaluasi <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?> 1 - <a data-toggle="modal" href="#sevaluation1">Edit</a><?php } ?></td>
+                                            <td>Status Sementara Evaluasi 1 <?php if($this->session->userdata('uroleid') == ROLE_ANALIS) { ?>  - <a data-toggle="modal" href="#sevaluation1">Edit</a><?php } ?></td>
                                             <td>:</td>
                                             <td><?php echo $case['case_evaluation1_status']; ?></td>
                                         </tr>
@@ -1221,6 +1221,195 @@
                 <div class="modal-body">
                     <label>Catatan:</label>
                     <textarea required="" name="case_evaluation5_note" class="form-control"><?php echo $case['case_evaluation5_note'] ?></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="case_for_draft">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Buat Draft UDM Dan Sanksi ADM:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="case_for_draft" <?php echo $case['case_for_draft'] == '1'? 'checked': '' ?> value="1">YA </label> <label> <input <?php echo $case['case_for_draft'] == '0'? 'checked': '' ?> type="radio" name="case_for_draft" value="0">TIDAK</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="case_is_signatured">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Tanda Tangan:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="case_is_signatured" <?php echo $case['case_is_signatured'] == '1'? 'checked': '' ?> value="1">YA </label> <label> <input <?php echo $case['case_is_signatured'] == '0'? 'checked': '' ?> type="radio" name="case_is_signatured" value="0">TIDAK</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="sent_meeting_invitation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Kirim undangan rapat pemberian sanksi:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="sent_meeting_invitation" <?php echo $case['sent_meeting_invitation'] == '1'? 'checked': '' ?> value="1">SUDAH </label> <label> <input <?php echo $case['sent_meeting_invitation'] == '0'? 'checked': '' ?> type="radio" name="sent_meeting_invitation" value="0">BELUM</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="berita_acara_pemanggilan">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Berita acara pemanggilan:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="berita_acara_pemanggilan" <?php echo $case['berita_acara_pemanggilan'] == '1'? 'checked': '' ?> value="1">SUDAH </label> <label> <input <?php echo $case['berita_acara_pemanggilan'] == '0'? 'checked': '' ?> type="radio" name="berita_acara_pemanggilan" value="0">BELUM</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="case_is_published">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Publikasi media Jakarta:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="case_is_published" <?php echo $case['case_is_published'] == '1'? 'checked': '' ?> value="1">SUDAH </label> <label> <input <?php echo $case['case_is_published'] == '0'? 'checked': '' ?> type="radio" name="case_is_published" value="0">BELUM</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="create_assignment_verification_letter">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Buat surat tugas verifikasi lapangan:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="create_assignment_verification_letter" <?php echo $case['create_assignment_verification_letter'] == '1'? 'checked': '' ?> value="1">SUDAH </label> <label> <input <?php echo $case['create_assignment_verification_letter'] == '0'? 'checked': '' ?> type="radio" name="create_assignment_verification_letter" value="0">BELUM</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-check"></span> Simpan</button>
+
+                </div>
+            </div>
+            <?php echo form_close() ?>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal fade" id="sent_report">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <?php echo form_open('admin/cases/evaluation/' . $case['case_id']); ?>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title"><span class="fa fa-mail-forward"></span> Edit</h3>
+                </div>
+                <div class="modal-body">
+                    <label>Kirim laporan oleh penanggung jawab perusahaan:</label>
+                    <div class="radio">
+                        <label><input required="" type="radio" name="sent_report" <?php echo $case['sent_report'] == '1'? 'checked': '' ?> value="1">SUDAH </label> <label> <input <?php echo $case['sent_report'] == '0'? 'checked': '' ?> type="radio" name="sent_report" value="0">BELUM</label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-close"></span> Batal</button>
