@@ -49,7 +49,7 @@
                                             }elseif($row['case_final_status']=='Tidak Taat'){
                                                 echo 'tr_danger';
                                             }else{
-                                                echo '';
+                                                echo 'tr_proses';
                                             } ?>">
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $row['instance_name']; ?></td>
