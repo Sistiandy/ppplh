@@ -11,7 +11,7 @@ if (!defined('BASEPATH'))
  * @category    Models
  * @author      Sistiandy Syahbana nugraha <sistiandy.web.id>
  */
-class Instances_model extends CI_Model {
+class instances_model extends CI_Model {
 
     function __construct() {
         parent::__construct();
@@ -41,7 +41,7 @@ class Instances_model extends CI_Model {
         $this->db->select('users_user_id, users.user_full_name');
 
         $this->db->join('users', 'users.user_id = instances.users_user_id', 'left');
-        $res = $this->db->get('Instances');
+        $res = $this->db->get('instances');
 
         if (isset($params['id'])) {
             return $res->row_array();
@@ -87,10 +87,10 @@ class Instances_model extends CI_Model {
 
         if (isset($data['instance_id'])) {
             $this->db->where('instance_id', $data['instance_id']);
-            $this->db->update('Instances');
+            $this->db->update('instances');
             $id = $data['instance_id'];
         } else {
-            $this->db->insert('Instances');
+            $this->db->insert('instances');
             $id = $this->db->insert_id();
         }
 
@@ -101,7 +101,7 @@ class Instances_model extends CI_Model {
     // Drop some data to table
     function delete($id) {
         $this->db->where('instance_id', $id);
-        $this->db->delete('Instances');
+        $this->db->delete('instances');
     }
 
 }
