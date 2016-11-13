@@ -59,6 +59,7 @@ $route['admin/(:any)/(:any)/edit/(:num)'] = "$1/$1_admin/add_$2/$3";
 $route['admin/(:any)/(:any)/(:num)/(:num)'] = "$1/$1_admin/$2/$3/$4";
 $route['admin/(:any)/(:any)/(:num)'] = "$1/$1_admin/$2/$3";
 $route['admin/(:any)/(:any)/(:any)'] = "$1/$1_admin/$3_$2";
+$route['admin/(:any)/(:any)/(:any)'] = "$1/$1_admin/$2/$3";
 $route['admin'] = "dashboard/dashboard_admin";
 
 $route['default_controller'] = 'welcome';

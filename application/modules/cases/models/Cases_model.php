@@ -22,6 +22,10 @@ class Cases_model extends CI_Model {
         if (isset($params['id'])) {
             $this->db->where('cases.case_id', $params['id']);
         }
+        
+        if (isset($params['case_final_status'])) {
+            $this->db->where('cases.case_final_status', $params['case_final_status']);
+        }
 
         if (isset($params['limit'])) {
             if (!isset($params['offset'])) {

@@ -54,6 +54,24 @@
                     <?php } ?>
                 </ul>
             </li>
+                    <?php if ($this->session->userdata('uroleid') == ROLE_KABID) { ?>
+            <li class="<?php echo ($this->uri->segment(2) == 'report') ? 'active' : '' ?> treeview">
+                <a href="#">
+                    <i class="fa fa-list-alt"></i> <span>Laporan</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?php echo ($this->uri->segment(2) == 'report' AND $this->uri->segment(3) != 'taat') ? 'active' : '' ?> ">
+                        <a href="<?php echo site_url('admin/reports/taat') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'report' AND $this->uri->segment(3) == 'taat') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Daftar Kasus Taat</a>
+                    </li>
+                        <li class="<?php echo ($this->uri->segment(2) == 'report' AND $this->uri->segment(3) == 'dibekukan') ? 'active' : '' ?> ">
+                            <a href="<?php echo site_url('admin/reports/dibekukan') ?>"><i class="fa  <?php echo ($this->uri->segment(2) == 'report' AND $this->uri->segment(3) == 'dibekukan') ? 'fa-dot-circle-o' : 'fa-circle-o' ?>"></i> Tambah Kasus Dibekukan</a>
+                        </li>
+                </ul>
+            </li>
+                    <?php } ?>
             <li class="<?php echo ($this->uri->segment(2) == 'instances') ? 'active' : '' ?> treeview">
                 <a href="#">
                     <i class="fa fa-bank"></i> <span>Instansi</span>
