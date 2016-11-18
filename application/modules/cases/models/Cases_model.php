@@ -26,6 +26,19 @@ class Cases_model extends CI_Model {
         if (isset($params['case_final_status'])) {
             $this->db->where('cases.case_final_status', $params['case_final_status']);
         }
+        
+        if (isset($params['activity_id'])) {
+            $this->db->where('cases.activities_activity_id', $params['activity_id']);
+        }
+        
+        if (isset($params['case_region'])) {
+            $this->db->where('cases.case_region', $params['case_region']);
+        }
+
+        if (isset($params['date_start']) AND isset($params['date_end'])) {
+            $this->db->where('case_date >=', $params['date_start'] . ' 00:00:00');
+            $this->db->where('case_date <=', $params['date_end'] . ' 23:59:59');
+        }
 
         if (isset($params['limit'])) {
             if (!isset($params['offset'])) {

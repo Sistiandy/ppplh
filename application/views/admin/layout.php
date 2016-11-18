@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="<?php echo media_url() ?>/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="<?php echo media_url() ?>/css/ionicons.min.css">
+        <!-- Select2 multi select -->
+        <link rel="stylesheet" href="<?php echo media_url() ?>/css/select2.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="<?php echo media_url() ?>/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -27,8 +29,6 @@
         <link rel="stylesheet" href="<?php echo media_url() ?>/css/bootstrap3-wysihtml5.min.css">
         <!-- Notyfy JS - Notification -->
         <link rel="stylesheet" href="<?php echo media_url() ?>/css/jquery.notyfy.css">
-        <!-- Select2 multi select -->
-        <link rel="stylesheet" href="<?php echo media_url() ?>/css/select2.min.css">
 
         <style>
             .tr_danger{
@@ -142,7 +142,7 @@
         <script src="<?php echo media_url() ?>/js/dataTables.bootstrap.min.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(function () {
                 $(".autocomplete").select2();
                 $(".textarea").wysihtml5();
             });
