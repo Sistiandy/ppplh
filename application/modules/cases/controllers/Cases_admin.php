@@ -32,7 +32,6 @@ class Cases_admin extends CI_Controller {
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules('instance_id', 'Instansi', 'trim|required|xss_clean');
-        $this->form_validation->set_rules('case_address', 'Alamat', 'trim|required|xss_clean');
         $this->form_validation->set_rules('case_region', 'Wilayah', 'trim|required|xss_clean');
         $this->form_validation->set_rules('channel_id', 'Pelimpahan', 'trim|required|xss_clean');
         $this->form_validation->set_rules('activity_id', 'Jenis Kegiatan', 'trim|required|xss_clean');
@@ -50,7 +49,6 @@ class Cases_admin extends CI_Controller {
             }
             $params['activities_activity_id'] = $this->input->post('activity_id');
             $params['instances_instance_id'] = $this->input->post('instance_id');
-            $params['case_address'] = $this->input->post('case_address');
             $params['case_note'] = $this->input->post('case_note');
             $params['case_region'] = $this->input->post('case_region');
             $params['channels_channel_id'] = $this->input->post('channel_id');

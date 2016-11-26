@@ -55,7 +55,7 @@
                                             <td><?php echo $i; ?></td>
                                             <td><?php echo $row['instance_name']; ?></td>
                                             <td><?php echo $row['activity_title']; ?></td>
-                                            <td><?php echo $row['case_address']; ?></td>
+                                            <td><?php echo $row['instance_address']; ?></td>
                                             <td><?php echo $row['case_region']; ?></td>
                                             <td><?php echo $row['channel_name']; ?></td>
                                             <td><?php echo ($row['stage_id'] == STAGE_STAFF) ? 'Staff' : 'Analis' ?></td>

@@ -3,7 +3,6 @@ if (isset($case)) {
     $id = $case['case_id'];
     $ActivityValue = $case['activities_activity_id'];
     $InstanceValue = $case['instances_instance_id'];
-    $AddressValue = $case['case_address'];
     $RegionValue = $case['case_region'];
     $ChannelValue = $case['channels_channel_id'];
     $DateValue = $case['case_date'];
@@ -11,7 +10,6 @@ if (isset($case)) {
 } else {
     $ActivityValue = set_value('activity_id');
     $InstanceValue = set_value('instance_id');
-    $AddressValue = set_value('case_address');
     $RegionValue = set_value('case_region');
     $ChannelValue = set_value('channel_id');
     $DateValue = set_value('case_date');
@@ -72,10 +70,6 @@ if (isset($case)) {
                                 <option value="Jakarta Barat" <?php echo ($RegionValue == 'Jakarta Barat') ? 'selected' : null ?>>Jakarta Barat</option>
                                 <option value="Jakarta Utara" <?php echo ($RegionValue == 'Jakarta Utara') ? 'selected' : null ?>>Jakarta Utara</option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Alamat <small data-toggle="tooltip" title="Wajib diisi">*</small></label>
-                            <textarea class="form-control" placeholder="Alamat" name="case_address"><?php echo $AddressValue ?></textarea>
                         </div>
                         <div class="form-group">
                             <label>Pelimpahan <small data-toggle="tooltip" title="Wajib diisi">*</small></label>

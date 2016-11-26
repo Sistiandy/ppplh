@@ -41,7 +41,7 @@
                                     <tr>
                                         <td>Alamat</td>
                                         <td>:</td>
-                                        <td><?php echo $case['case_address'] ?></td>
+                                        <td><?php echo $case['instance_address'] ?></td>
                                     </tr>
                                     <tr>
                                         <td>Wilayah</td>

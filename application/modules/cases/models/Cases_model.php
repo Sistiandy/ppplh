@@ -53,7 +53,7 @@ class Cases_model extends CI_Model {
         } else {
             $this->db->order_by('case_last_update', 'desc');
         }
-        $this->db->select('cases.case_id, case_address, case_region,
+        $this->db->select('cases.case_id, case_region,
             case_date, sanksi_type, stage_id, case_for_draft, case_is_signatured, sent_meeting_invitation,
             berita_acara_pemanggilan, case_is_published, create_assignment_verification_letter, case_final_status,
             sent_report, case_evaluation1_note, case_evaluation1_status, case_note,
@@ -63,7 +63,7 @@ class Cases_model extends CI_Model {
             case_evaluation5_note,
             case_input_date, case_last_update');
         $this->db->select('cases.users_user_id, users.user_full_name');
-        $this->db->select('instances_instance_id, instances.instance_name');
+        $this->db->select('instances_instance_id, instances.instance_name, instance_address');
         $this->db->select('channels_channel_id, channels.channel_name');
         $this->db->select('activities_activity_id, activities.activity_title');
 
@@ -89,10 +89,6 @@ class Cases_model extends CI_Model {
 
         if (isset($data['instances_instance_id'])) {
             $this->db->set('instances_instance_id', $data['instances_instance_id']);
-        }
-
-        if (isset($data['case_address'])) {
-            $this->db->set('case_address', $data['case_address']);
         }
 
         if (isset($data['case_region'])) {
